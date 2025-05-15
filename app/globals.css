@@ -1,3 +1,4 @@
+/* Add to existing app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,7 +23,21 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure footer gradient doesn't clash with body background */
 footer {
   background: linear-gradient(to right, #1e40af, #6b21a8);
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
