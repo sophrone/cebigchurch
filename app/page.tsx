@@ -13,7 +13,7 @@ export default function Home() {
           className="mx-auto mb-4"
         />
         <h1 className="text-5xl font-bold text-blue-800 mb-4">
-          Welcome to CEBC Youth Church!
+          Welcome to Christ Embassy Big Church!
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl">
           A vibrant community where young people connect, worship, and grow in faith. Join us for live services, inspiring testimonies, and uplifting podcasts!
