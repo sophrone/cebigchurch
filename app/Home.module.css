@@ -237,20 +237,20 @@
   }
 }
 
-.welcomeIcon {
-  display: block;
-  margin: 0 auto;
-  animation: pulseGlow 2s ease-in-out infinite;
+.welcomeLogo {
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  animation: spinIn 1.2s ease-out;
   position: relative;
   z-index: 1;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
 }
 
 @media (min-width: 640px) {
-  .welcomeIcon {
-    width: 100px;
-    height: 100px;
+  .welcomeLogo {
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -312,7 +312,7 @@
   animation-delay: 20s;
 }
 
-.slideshowOverlay {
+.eventsSlideshowOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -674,18 +674,18 @@
   }
 }
 
-@keyframes pulseGlow {
+@keyframes spinIn {
   0% {
-    transform: scale(1);
-    stroke: #facc15;
+    opacity: 0;
+    transform: rotate(0deg) scale(0.5);
   }
   50% {
-    transform: scale(1.1);
-    stroke: #f97316;
+    opacity: 1;
+    transform: rotate(180deg) scale(1.05);
   }
   100% {
-    transform: scale(1);
-    stroke: #facc15;
+    opacity: 1;
+    transform: rotate(360deg) scale(1);
   }
 }
 
