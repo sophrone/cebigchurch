@@ -177,15 +177,11 @@
 }
 
 .welcomeTitle {
-  font-size: 1.875rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #facc15, #f97316);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #facc15;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
-  animation: pulseGlow 3s ease-in-out infinite, fadeIn 1s ease-out;
+  animation: textPop 1s ease-out, fadeIn 1s ease-out;
   position: relative;
   z-index: 1;
   max-width: none;
@@ -193,6 +189,7 @@
   background: none;
   border: none;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   letter-spacing: 0.02em;
 }
@@ -213,7 +210,7 @@
 
 @media (min-width: 640px) {
   .welcomeTitle {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -230,6 +227,7 @@
   background: none;
   border: none;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -316,21 +314,18 @@
 }
 
 .eventsTitle {
-  font-size: 1.875rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #f97316, #facc15);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #f97316;
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
-  animation: bounceIn 1s ease-out, pulseGlow 3s ease-in-out infinite;
+  animation: textPop 1s ease-out, bounceIn 1s ease-out;
   position: relative;
   max-width: none;
   text-align: center;
   background: none;
   border: none;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   letter-spacing: 0.02em;
 }
@@ -351,7 +346,7 @@
 
 @media (min-width: 640px) {
   .eventsTitle {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -483,7 +478,7 @@
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
-  animation: pulseGlow 3s ease-in-out infinite, fadeIn 1s ease-out 0.2s;
+  animation: fadeIn 1s ease-out 0.2s;
   animation-fill-mode: both;
 }
 
@@ -614,18 +609,6 @@
   }
 }
 
-@keyframes pulseGlow {
-  0% {
-    text-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
-  }
-  50% {
-    text-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
-  }
-  100% {
-    text-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
-  }
-}
-
 @keyframes slideshowFade {
   0% {
     opacity: 0;
@@ -714,5 +697,20 @@
   }
   100% {
     background: linear-gradient(135deg, #fefce8, #f3f4f6);
+  }
+}
+
+@keyframes textPop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
