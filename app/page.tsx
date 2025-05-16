@@ -46,7 +46,7 @@ export default function Home() {
       <section className={styles.welcome}>
         <div className="container mx-auto text-center">
           <h2 className={`${styles.welcomeTitle} font-poppins`}>
-            Welcome to CEBC Youth Church
+            Welcome to Christ Embassy Big Church
           </h2>
           <p className={`${styles.welcomeText} font-montserrat`}>
             We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
@@ -87,10 +87,12 @@ export default function Home() {
               { title: "Youth Worship Night", date: "May 25, 2025", time: "6 PM" },
               { title: "Community Outreach", date: "June 1, 2025", time: "10 AM" },
               { title: "Prayer Marathon", date: "June 15, 2025", time: "8 AM" },
+              { title: "Youth Talent Showcase", date: "June 22, 2025", time: "4 PM" },
             ].map((event, index) => (
               <div
                 key={index}
                 className={styles.eventCard}
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 <h3 className={`${styles.eventTitle} font-poppins`}>
                   {event.title}
