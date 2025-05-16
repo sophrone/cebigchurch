@@ -70,6 +70,7 @@ export default function Home() {
               src={`/${img}`}
               alt={`Event background ${index + 1}`}
               fill
+              sizes="(max-width: 640px) 100vw, 1200px"
               className={`${styles.slideshowImage} ${index === 0 ? styles.active : ""}`}
               style={{ animationDelay: `${index * 5}s` }}
               loading={index === 0 ? "eager" : "lazy"}
