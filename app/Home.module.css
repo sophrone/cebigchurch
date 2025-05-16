@@ -161,7 +161,7 @@
 }
 
 .welcome {
-  padding: 0 1rem;
+  padding: 2rem 1rem;
   background: linear-gradient(135deg, #f3f4f6, #fefce8);
   border: none;
   box-shadow: none;
@@ -172,7 +172,7 @@
 
 @media (min-width: 640px) {
   .welcome {
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
   }
 }
 
@@ -237,12 +237,21 @@
   }
 }
 
-.welcomeLogo {
-  border-radius: 50%;
+.welcomeIcon {
+  display: block;
   margin: 0 auto;
-  animation: spinIn 1.2s ease-out;
+  animation: pulseGlow 2s ease-in-out infinite;
   position: relative;
   z-index: 1;
+  width: 80px;
+  height: 80px;
+}
+
+@media (min-width: 640px) {
+  .welcomeIcon {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .events {
@@ -665,14 +674,18 @@
   }
 }
 
-@keyframes spinIn {
+@keyframes pulseGlow {
   0% {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.5);
+    transform: scale(1);
+    stroke: #facc15;
+  }
+  50% {
+    transform: scale(1.1);
+    stroke: #f97316;
   }
   100% {
-    opacity: 1;
-    transform: rotate(360deg) scale(1);
+    transform: scale(1);
+    stroke: #facc15;
   }
 }
 

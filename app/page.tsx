@@ -50,13 +50,21 @@ export default function Home() {
         <p className={`${styles.welcomeText} font-montserrat`}>
           We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
         </p>
-        <Image
-          src="/cebc-logo.png"
-          alt="CEBC Youth Church"
-          width={120}
-          height={120}
-          className={styles.welcomeLogo}
-        />
+        <svg
+          className={styles.welcomeIcon}
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M50 10V90M10 50H90"
+            stroke="#facc15"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+        </svg>
       </section>
 
       {/* Events Teaser */}
