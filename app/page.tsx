@@ -74,7 +74,7 @@ export default function Home() {
               loading={index === 0 ? "eager" : "lazy"}
             />
           ))}
-          <div className={styles.eventsSlideshowOverlay}></div>
+          <div className={styles.slideshowOverlay}></div>
         </div>
         <div className="relative z-10">
           <h2 className={`${styles.eventsTitle} font-poppins text-center`}>
@@ -110,22 +110,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimony Highlight */}
+      {/* Praise Reports Section */}
       <section className={styles.testimony}>
         <div className="container mx-auto text-center">
           <h2 className={`${styles.testimonyTitle} font-poppins`}>
-            Featured Testimony
+            Praise Reports
           </h2>
-          <div className={styles.testimonyCard}>
-            <p className={`${styles.testimonyText} font-montserrat italic`}>
-              “Joining CEBC Youth Church was a game-changer. The community lifted my faith to new heights!” — Sarah, 19
-            </p>
-            <Link
-              href="/testimony"
-              className={`${styles.testimonyLink} font-montserrat`}
-            >
-              Share Your Story
-            </Link>
+          <div className={styles.testimonyList}>
+            {[
+              { 
+                image: "image8.jpg", 
+                text: "“This is the place to be for every young person and adult! Your life will be transformed by the word just like mine has been!”", 
+                author: "Bro Austin" 
+              },
+              { 
+                image: "image9.jpg", 
+                text: "“Never a dull moment in church with our estemeed Pastor Tru steady giving us the word for the now and for the future. This is the happening place!”", 
+                author: "Bro Francis" 
+              },
+              { 
+                image: "image10.jpg", 
+                text: "“Everything you need for a life of success and prosperity is right here! I have become bolder and full of more zeal for the Lord. I tell you, life takes on a whole new meaning! Truly the church without boundaries!”", 
+                author: "Sis Chidera" 
+              },
+              { 
+                image: "image11.jpg", 
+                text: "“The prayer meetings have been very instrumental in my life and in all that concerns me. There is constant and consistent transformation in my life every single day!”", 
+                author: "Bro Michael" 
+              },
+            ].map((testimony, index) => (
+              <div
+                key={index}
+                className={styles.testimonyCard}
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
+                <Image
+                  src={`/${testimony.image}`}
+                  alt={`Praise report from ${testimony.author}`}
+                  width={50}
+                  height={50}
+                  className={styles.testimonyImage}
+                />
+                <p className={`${styles.testimonyText} font-montserrat italic`}>
+                  {testimony.text} — {testimony.author}
+                </p>
+                <Link
+                  href="/testimony"
+                  className={`${styles.testimonyLink} font-montserrat`}
+                >
+                  Share Your Story
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
