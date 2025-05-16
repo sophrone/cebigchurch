@@ -63,7 +63,21 @@ export default function Home() {
 
       {/* Events Teaser */}
       <section className={styles.events}>
-        <div className="container mx-auto">
+        <div className={styles.eventsSlideshow}>
+          {["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"].map((img, index) => (
+            <Image
+              key={index}
+              src={`/${img}`}
+              alt={`Event background ${index + 1}`}
+              fill
+              className={`${styles.slideshowImage} ${index === 0 ? styles.active : ""}`}
+              style={{ animationDelay: `${index * 5}s` }}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          ))}
+          <div className={styles.slideshowOverlay}></div>
+        </div>
+        <div className="container mx-auto relative z-10">
           <h2 className={`${styles.eventsTitle} font-poppins text-center`}>
             Upcoming Events
           </h2>
