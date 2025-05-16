@@ -162,11 +162,21 @@
 
 .welcome {
   padding: 3rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(30, 64, 175, 0.1),
-    rgba(107, 33, 168, 0.1)
-  );
+  background: linear-gradient(135deg, #f3f4f6, #fefce8);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.2), transparent);
+  transform: translate(-50%, -50%);
+  z-index: 0;
 }
 
 @media (min-width: 640px) {
@@ -185,6 +195,22 @@
   margin-bottom: 1.5rem;
   text-shadow: 0 0 12px rgba(250, 204, 21, 0.7);
   animation: pulseGlow 3s ease-in-out infinite, fadeIn 1s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.welcomeTitle::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  background: rgba(250, 204, 21, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+  animation: sparkle 2s infinite;
+  transform: translateX(-50%);
 }
 
 @media (min-width: 640px) {
@@ -202,6 +228,8 @@
   margin-right: auto;
   animation: slideIn 1s ease-out 0.2s;
   animation-fill-mode: both;
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 640px) {
@@ -214,6 +242,8 @@
   border-radius: 50%;
   margin: 0 auto;
   animation: spinIn 1.2s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .events {
