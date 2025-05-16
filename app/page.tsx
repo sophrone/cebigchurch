@@ -1,39 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./Home.module.css";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)]">
+    <div className={`${styles.homeContainer} flex flex-col min-h-screen bg-[var(--background)]`}>
       {/* Hero Section with Video Background */}
-      <section className="relative flex items-center justify-center h-[70vh] sm:h-[80vh]">
+      <section className={styles.hero}>
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className={styles.heroVideo}
         >
           <source src="/montage.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="font-poppins text-4xl font-bold text-white mb-4 sm:text-5xl md:text-6xl">
+        <div className={styles.heroOverlay}></div>
+        <div className={styles.heroContent}>
+          <h1 className={`${styles.heroTitle} font-poppins`}>
             Christ Embassy Big Church
           </h1>
-          <p className="font-montserrat text-lg text-white/90 mb-6 sm:text-xl max-w-md mx-auto">
+          <p className={`${styles.heroSubtitle} font-montserrat`}>
             The Church without boundaries! Join our vibrant youth community.
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
+          <div className={styles.heroButtons}>
             <Link
               href="/live-service"
-              className="bg-gradient-to-r from-blue-800 to-purple-900 text-white px-6 py-3 rounded-full font-poppins font-semibold text-lg hover:bg-blue-900 transition transform hover:scale-105 active:scale-95"
+              className={`${styles.heroButton} ${styles.primaryButton} font-poppins`}
             >
               Watch Live
             </Link>
             <Link
               href="/contact"
-              className="border border-white text-white px-6 py-3 rounded-full font-poppins font-semibold text-lg hover:bg-white/10 transition transform hover:scale-105 active:scale-95"
+              className={`${styles.heroButton} ${styles.secondaryButton} font-poppins`}
             >
               Connect Now
             </Link>
@@ -42,12 +43,12 @@ export default function Home() {
       </section>
 
       {/* Welcome Section */}
-      <section className="py-12 px-4 bg-white sm:py-16">
+      <section className={styles.welcome}>
         <div className="container mx-auto text-center">
-          <h2 className="font-poppins text-3xl font-bold text-blue-800 mb-6 sm:text-4xl">
+          <h2 className={`${styles.welcomeTitle} font-poppins`}>
             Welcome to CEBC Youth Church
           </h2>
-          <p className="font-montserrat text-lg text-gray-600 mb-8 max-w-2xl mx-auto sm:text-xl">
+          <p className={`${styles.welcomeText} font-montserrat`}>
             We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
           </p>
           <Image
@@ -55,18 +56,18 @@ export default function Home() {
             alt="CEBC Youth Church"
             width={120}
             height={120}
-            className="mx-auto mb-6 rounded-full animate-fade-in"
+            className={styles.welcomeLogo}
           />
         </div>
       </section>
 
       {/* Events Teaser */}
-      <section className="py-12 px-4 bg-gray-100 sm:py-16">
+      <section className={styles.events}>
         <div className="container mx-auto">
-          <h2 className="font-poppins text-3xl font-bold text-blue-800 mb-6 text-center sm:text-4xl">
+          <h2 className={`${styles.eventsTitle} font-poppins text-center`}>
             Upcoming Events
           </h2>
-          <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory">
+          <div className={styles.eventsList}>
             {[
               { title: "Youth Worship Night", date: "May 25, 2025", time: "6 PM" },
               { title: "Community Outreach", date: "June 1, 2025", time: "10 AM" },
@@ -74,17 +75,17 @@ export default function Home() {
             ].map((event, index) => (
               <div
                 key={index}
-                className="min-w-[250px] bg-white rounded-lg shadow-lg p-6 snap-center transform transition-transform hover:scale-105"
+                className={styles.eventCard}
               >
-                <h3 className="font-poppins text-xl font-semibold text-blue-800 mb-2">
+                <h3 className={`${styles.eventTitle} font-poppins`}>
                   {event.title}
                 </h3>
-                <p className="font-montserrat text-gray-600">
+                <p className={`${styles.eventDetails} font-montserrat`}>
                   {event.date} at {event.time}
                 </p>
                 <Link
                   href="/contact"
-                  className="mt-4 inline-block text-blue-600 font-montserrat hover:underline"
+                  className={`${styles.eventLink} font-montserrat`}
                 >
                   RSVP Now
                 </Link>
@@ -95,18 +96,18 @@ export default function Home() {
       </section>
 
       {/* Testimony Highlight */}
-      <section className="py-12 px-4 bg-white sm:py-16">
+      <section className={styles.testimony}>
         <div className="container mx-auto text-center">
-          <h2 className="font-poppins text-3xl font-bold text-blue-800 mb-6 sm:text-4xl">
+          <h2 className={`${styles.testimonyTitle} font-poppins`}>
             Featured Testimony
           </h2>
-          <div className="max-w-md mx-auto bg-gradient-to-r from-blue-800/10 to-purple-900/10 rounded-lg p-6 shadow-lg animate-fade-in">
-            <p className="font-montserrat text-gray-600 italic mb-4">
+          <div className={styles.testimonyCard}>
+            <p className={`${styles.testimonyText} font-montserrat italic`}>
               “Joining CEBC Youth Church was a game-changer. The community lifted my faith to new heights!” — Sarah, 19
             </p>
             <Link
               href="/testimony"
-              className="text-blue-600 font-montserrat hover:underline"
+              className={`${styles.testimonyLink} font-montserrat`}
             >
               Share Your Story
             </Link>
@@ -115,17 +116,17 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-12 px-4 bg-gradient-to-r from-blue-800 to-purple-900 text-white sm:py-16">
+      <section className={styles.cta}>
         <div className="container mx-auto text-center">
-          <h2 className="font-poppins text-3xl font-bold mb-6 sm:text-4xl">
+          <h2 className={`${styles.ctaTitle} font-poppins`}>
             Join the Movement
           </h2>
-          <p className="font-montserrat text-lg mb-8 max-w-md mx-auto sm:text-xl">
+          <p className={`${styles.ctaText} font-montserrat`}>
             Ready to connect with a vibrant youth community? Get involved today!
           </p>
           <Link
             href="/contact"
-            className="bg-yellow-400 text-blue-800 px-8 py-4 rounded-full font-poppins font-semibold text-lg hover:bg-yellow-500 transition transform hover:scale-105 active:scale-95"
+            className={`${styles.ctaButton} font-poppins`}
           >
             Join Us Now
           </Link>
