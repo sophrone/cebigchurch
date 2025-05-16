@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Footer.module.css";
@@ -14,7 +15,7 @@ export default function Footer() {
         {/* Social Media Links */}
         <div className={styles.socialLinks}>
           <a
-            href="https://instagram.com/cebc_youth"
+            href="https://instagram.com/ce_bigchurch/#"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
@@ -28,7 +29,7 @@ export default function Footer() {
             />
           </a>
           <a
-            href="https://youtube.com/cebc_youth"
+            href="https://youtube.com/@cebigchurch"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
@@ -42,7 +43,7 @@ export default function Footer() {
             />
           </a>
           <a
-            href="https://kingschat.com/cebc_youth"
+            href="https://kingschat.online/user/ce_bigchurch"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
