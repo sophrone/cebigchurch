@@ -168,6 +168,7 @@
   position: relative;
   overflow: hidden;
   animation: backgroundFade 5s ease-in-out infinite alternate;
+  text-align: center;
 }
 
 @media (min-width: 640px) {
@@ -240,17 +241,27 @@
 .welcomeLogo {
   border-radius: 50%;
   margin: 0 auto 1.5rem;
-  animation: spinIn 1.2s ease-out;
+  animation: spinIn 1.2s ease-out, glowPulse 2s ease-in-out infinite;
   position: relative;
+  left: 0;
   z-index: 1;
   width: 100px;
   height: 100px;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
 }
 
 @media (min-width: 640px) {
   .welcomeLogo {
     width: 120px;
     height: 120px;
+    filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+  }
+}
+
+@media (max-width: 639px) {
+  .welcomeLogo {
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7));
   }
 }
 
@@ -725,5 +736,31 @@
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+  }
+}
+
+@media (max-width: 639px) {
+  @keyframes glowPulse {
+    0% {
+      filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7));
+    }
+    50% {
+      filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.8));
+    }
+    100% {
+      filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7));
+    }
   }
 }
