@@ -44,21 +44,19 @@ export default function Home() {
 
       {/* Welcome Section */}
       <section className={styles.welcome}>
-        <div className="container mx-auto text-center">
-          <h2 className={`${styles.welcomeTitle} font-poppins`}>
-            Welcome to Christ Embassy Big Church
-          </h2>
-          <p className={`${styles.welcomeText} font-montserrat`}>
-            We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
-          </p>
-          <Image
-            src="/cebc-logo.png"
-            alt="CEBC Youth Church"
-            width={120}
-            height={120}
-            className={styles.welcomeLogo}
-          />
-        </div>
+        <h2 className={`${styles.welcomeTitle} font-poppins`}>
+          Welcome to Christ Embassy Big Church
+        </h2>
+        <p className={`${styles.welcomeText} font-montserrat`}>
+          We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
+        </p>
+        <Image
+          src="/cebc-logo.png"
+          alt="CEBC Youth Church"
+          width={120}
+          height={120}
+          className={styles.welcomeLogo}
+        />
       </section>
 
       {/* Events Teaser */}
@@ -78,7 +76,7 @@ export default function Home() {
           ))}
           <div className={styles.slideshowOverlay}></div>
         </div>
-        <div className="container mx-auto relative z-10">
+        <div className="relative z-10">
           <h2 className={`${styles.eventsTitle} font-poppins text-center`}>
             Upcoming Events
           </h2>
