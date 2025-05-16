@@ -15,10 +15,11 @@ export default function Footer() {
         {/* Social Media Links */}
         <div className={styles.socialLinks}>
           <a
-            href="https://instagram.com/ce_bigchurch/#"
+            href="https://instagram.com/ce_bigchurch"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
+            data-testid="instagram-link"
           >
             <Image
               src="/instagram-logo.png"
@@ -33,6 +34,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
+            data-testid="youtube-link"
           >
             <Image
               src="/youtube-logo.png"
@@ -47,6 +49,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
+            data-testid="kingschat-link"
           >
             <Image
               src="/kingschat-logo.png"
@@ -60,13 +63,13 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div className={styles.quickLinks}>
-          <Link href="/" className={styles.quickLink}>
+          <Link href="/" className={styles.quickLink} data-testid="home-link">
             Home
           </Link>
-          <Link href="/live-service" className={styles.quickLink}>
+          <Link href="/live-service" className={styles.quickLink} data-testid="live-service-link">
             Live Service
           </Link>
-          <Link href="/contact" className={styles.quickLink}>
+          <Link href="/contact" className={styles.quickLink} data-testid="contact-link">
             Contact
           </Link>
         </div>
@@ -76,6 +79,7 @@ export default function Footer() {
           onClick={scrollToTop}
           className={styles.backToTop}
           aria-label="Scroll to top"
+          data-testid="back-to-top"
         >
           Back to Top
         </button>
