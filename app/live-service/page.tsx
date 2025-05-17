@@ -11,6 +11,9 @@ export default function LiveService() {
     alert("Prayer request submitted! We'll pray for you!");
   };
 
+  const youtubeChannelId = "UCeSA9J33hAdblwSOovMdM-A"; // Replace with @cebigchurch's Channel ID (e.g., UC1234567890)
+  const isLive = true; // Static for now; set to true for testing live player, false for fallback
+
   return (
     <main className={styles.main}>
       {/* Hero Section */}
@@ -21,13 +24,28 @@ export default function LiveService() {
           <p className={styles.heroText}>
             Experience the power of worship and the word with CEBC Youth Church!
           </p>
-          <Image
-            src="/image1.jpg"
-            alt="Live Service"
-            width={800}
-            height={450}
-            className={styles.heroImage}
-          />
+          {isLive ? (
+            <iframe
+              className={styles.heroPlayer}
+              src={`https://www.youtube.com/embed/live_stream?channel=${youtubeChannelId}&autoplay=1&mute=1&rel=0`}
+              title="CEBC Youth Church Live Service"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <div className={styles.heroFallback}>
+              <Image
+                src="/cebc-logo.png"
+                alt="CEBC Logo"
+                width={120}
+                height={120}
+                className={styles.fallbackLogo}
+              />
+              <p className={styles.fallbackText}>
+                No live stream active. Check back soon for our next service!
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
