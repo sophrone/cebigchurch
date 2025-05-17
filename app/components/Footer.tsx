@@ -12,6 +12,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
+        {/* Follow Us Text */}
+        <h3 className={styles.followUs}>Follow Us</h3>
+
         {/* Social Media Links */}
         <div className={styles.socialLinks}>
           <a
