@@ -1,10 +1,103 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./LiveService.module.css";
+
 export default function LiveService() {
+  const handlePrayerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Placeholder for form submission (no backend yet)
+    alert("Prayer request submitted! We'll pray for you!");
+  };
+
   return (
-    <div className="container mx-auto py-16 text-center">
-      <h1 className="text-4xl font-bold text-blue-800 mb-4">Live Service</h1>
-      <p className="text-xl text-gray-600">
-        Join our live worship services every Sunday at 10 AM! (Placeholder for live stream embed.)
-      </p>
-    </div>
+    <main className={styles.main}>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <div className={styles.liveBadge}>Live Now</div>
+          <h1 className={styles.heroTitle}>Join Our Live Service</h1>
+          <p className={styles.heroText}>
+            Experience the power of worship and the word with CEBC Youth Church!
+          </p>
+          <Image
+            src="/image1.jpg"
+            alt="Live Service"
+            width={800}
+            height={450}
+            className={styles.heroImage}
+          />
+        </div>
+      </section>
+
+      {/* Schedule Section */}
+      <section className={styles.schedule}>
+        <h2 className={styles.scheduleTitle}>Service Schedule</h2>
+        <div className={styles.scheduleGrid}>
+          {[
+            { day: "Sunday Worship", time: "May 18, 2025, 10:00 AM WAT" },
+            { day: "Midweek Service", time: "May 21, 2025, 7:00 PM WAT" },
+          ].map((service, index) => (
+            <div key={index} className={styles.scheduleCard}>
+              <h3 className={styles.scheduleDay}>{service.day}</h3>
+              <p className={styles.scheduleTime}>{service.time}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Prayer Request Section */}
+      <section className={styles.prayer}>
+        <h2 className={styles.prayerTitle}>Submit a Prayer Request</h2>
+        <form className={styles.prayerForm} onSubmit={handlePrayerSubmit}>
+          <div className={styles.formGroup}>
+            <label htmlFor="name" className={styles.formLabel}>
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className={styles.formInput}
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="prayer" className={styles.formLabel}>
+              Prayer Request
+            </label>
+            <textarea
+              id="prayer"
+              className={styles.formTextarea}
+              placeholder="Your Prayer Request"
+              rows={4}
+              required
+            ></textarea>
+          </div>
+          <button type="submit" className={styles.formButton}>
+            Submit Prayer
+          </button>
+        </form>
+        <Image
+          src="/prayer-icon.png"
+          alt="Prayer Icon"
+          width={40}
+          height={40}
+          className={styles.prayerIcon}
+        />
+      </section>
+
+      {/* CTA Section */}
+      <section className={styles.cta}>
+        <h2 className={styles.ctaTitle}>Join Our Community</h2>
+        <p className={styles.ctaText}>
+          Be part of our vibrant youth church family!
+        </p>
+        <Link href="/contact" className={styles.ctaButton}>
+          Get Involved
+        </Link>
+      </section>
+    </main>
   );
 }
