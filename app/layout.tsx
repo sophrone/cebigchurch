@@ -18,7 +18,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Christ Embassy Big Church",
-  description: "The Church without boundaries!",
+  description: "Welcome to Christ Embassy Big Church Website.",
 };
 
 export default function RootLayout({
