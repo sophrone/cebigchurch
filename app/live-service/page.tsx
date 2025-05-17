@@ -5,7 +5,7 @@ import styles from "./LiveService.module.css";
 
 export default function LiveService() {
   // Hardcode YouTube URL here (replace with @cebigchurch video, e.g., https://www.youtube.com/watch?v=VIDEO_ID)
-  const videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Placeholder
+  const videoUrl = "https://www.youtube.com/watch?v=pef93NO1C9M"; // Placeholder
 
   // Extract video ID from YouTube URL
   const extractVideoId = (url: string) => {
@@ -23,9 +23,6 @@ export default function LiveService() {
         <div className={styles.heroContent}>
           <div className={styles.liveBadge}>Live Now</div>
           <h1 className={styles.heroTitle}>Join Our Live Service</h1>
-          <p className={styles.heroText}>
-            Experience the power of worship and the word with CEBC Youth Church!
-          </p>
           {videoId ? (
             <iframe
               className={styles.heroPlayer}
@@ -56,10 +53,10 @@ export default function LiveService() {
         <h2 className={styles.scheduleTitle}>Service Schedule</h2>
         <div className={styles.scheduleGrid}>
           {[
-            { day: "Sunday Worship", time: "May 18, 2025, 10:00 AM WAT" },
-            { day: "Midweek Service", time: "May 21, 2025, 7:00 PM WAT" },
+            { day: "Sunday Worship", time: "May 18, 2025, 10:00 AM WAT", class: styles.sundayCard },
+            { day: "Midweek Service", time: "May 21, 2025, 7:00 PM WAT", class: styles.wednesdayCard },
           ].map((service, index) => (
-            <div key={index} className={styles.scheduleCard}>
+            <div key={index} className={`${styles.scheduleCard} ${service.class}`}>
               <h3 className={styles.scheduleDay}>{service.day}</h3>
               <p className={styles.scheduleTime}>{service.time}</p>
             </div>
