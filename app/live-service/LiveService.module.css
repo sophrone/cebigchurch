@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #0a0a0a;
-  color: #f3f4f6;
+  background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+  color: #1e40af;
 }
 
 .hero {
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  overflow: hidden;
+  background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
 }
 
 @media (min-width: 640px) {
@@ -67,7 +67,7 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #f3f4f6;
+  color: #1e40af;
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out 0.2s;
   animation-fill-mode: both;
@@ -77,6 +77,67 @@
   .heroText {
     font-size: 1.25rem;
   }
+}
+
+.videoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .videoForm {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.videoInput {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  color: #1e40af;
+  background: #ffffff;
+  border: 1px solid #1e40af;
+  border-radius: 4px;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.videoInput:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.4);
+}
+
+.videoInput:hover {
+  border-color: #facc15;
+}
+
+.videoButton {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e40af;
+  background: linear-gradient(90deg, #facc15, #f97316);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.8s ease-out;
+}
+
+.videoButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+}
+
+.videoButton:active {
+  transform: scale(0.95);
 }
 
 .heroPlayer {
@@ -98,7 +159,7 @@
   width: 100%;
   max-width: 800px;
   padding: 1.5rem;
-  background: rgba(30, 64, 175, 0.2);
+  background: #ffffff;
   border-radius: 8px;
   border: 2px solid #facc15;
   animation: fadeIn 1s ease-out;
@@ -120,7 +181,7 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #f3f4f6;
+  color: #1e40af;
   text-align: center;
 }
 
@@ -134,6 +195,8 @@
   padding: 2rem 1rem;
   width: 100%;
   text-align: center;
+  background: #ffffff;
+  border-top: 2px solid #facc15;
 }
 
 @media (min-width: 640px) {
@@ -172,7 +235,7 @@
 }
 
 .scheduleCard {
-  background: rgba(30, 64, 175, 0.2);
+  background: rgba(30, 64, 175, 0.1);
   border: 2px solid #facc15;
   border-radius: 8px;
   padding: 1.5rem;
@@ -190,7 +253,7 @@
   font-family: var(--font-poppins), sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #f3f4f6;
+  color: #1e40af;
   margin-bottom: 0.5rem;
 }
 
@@ -198,7 +261,7 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #facc15;
+  color: #1e40af;
 }
 
 .prayer {

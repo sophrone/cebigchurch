@@ -2,17 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import styles from "./LiveService.module.css";
 
 export default function LiveService() {
+  const [videoUrl, setVideoUrl] = useState("https://www.youtube.com/watch?v=pef93NO1C9M"); // Default placeholder (replace with @cebigchurch video)
+
   const handlePrayerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder for form submission (no backend yet)
     alert("Prayer request submitted! We'll pray for you!");
   };
 
-  const youtubeChannelId = "UCeSA9J33hAdblwSOovMdM-A"; // Replace with @cebigchurch's Channel ID (e.g., UC1234567890)
-  const isLive = true; // Static for now; set to true for testing live player, false for fallback
+  const handleVideoSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert("Video URL updated!");
+  };
+
+  // Extract video ID from YouTube URL
+  const extractVideoId = (url: string) => {
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
+
+  const videoId = extractVideoId(videoUrl);
 
   return (
     <main className={styles.main}>
@@ -24,10 +37,23 @@ export default function LiveService() {
           <p className={styles.heroText}>
             Experience the power of worship and the word with CEBC Youth Church!
           </p>
-          {isLive ? (
+          <form className={styles.videoForm} onSubmit={handleVideoSubmit}>
+            <input
+              type="text"
+              className={styles.videoInput}
+              placeholder="Paste YouTube Video URL"
+              value={videoUrl}
+              onChange={(e) => setVideoUrl(e.target.value)}
+              required
+            />
+            <button type="submit" className={styles.videoButton}>
+              Embed Video
+            </button>
+          </form>
+          {videoId ? (
             <iframe
               className={styles.heroPlayer}
-              src={`https://www.youtube.com/embed/live_stream?channel=${youtubeChannelId}&autoplay=1&mute=1&rel=0`}
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0`}
               title="CEBC Youth Church Live Service"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -42,7 +68,7 @@ export default function LiveService() {
                 className={styles.fallbackLogo}
               />
               <p className={styles.fallbackText}>
-                No live stream active. Check back soon for our next service!
+                No video available. Paste a YouTube link above!
               </p>
             </div>
           )}
