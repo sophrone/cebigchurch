@@ -12,20 +12,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 0.5rem;
   background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
 }
 
 @media (min-width: 640px) {
   .hero {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1rem;
   }
 }
 
 .heroContent {
   text-align: center;
   z-index: 1;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .liveBadge {
@@ -65,13 +65,18 @@
 
 .heroPlayer {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
   border: 2px solid #facc15;
   box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
   margin: 0 auto;
   animation: glowPulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.heroPlayer:hover {
+  transform: scale(1.02);
 }
 
 .heroFallback {
@@ -80,7 +85,7 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   padding: 1.5rem;
   background: #ffffff;
   border-radius: 8px;
