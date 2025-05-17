@@ -28,6 +28,12 @@
   max-width: 1000px;
 }
 
+@media (min-width: 640px) {
+  .heroContent {
+    max-width: 1200px;
+  }
+}
+
 .liveBadge {
   font-family: var(--font-poppins), sans-serif;
   font-size: 0.875rem;
@@ -72,11 +78,18 @@
   box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
   margin: 0 auto;
   animation: glowPulse 2s ease-in-out infinite;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .heroPlayer {
+    max-width: 1200px;
+  }
 }
 
 .heroPlayer:hover {
   transform: scale(1.02);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
 }
 
 .heroFallback {
@@ -91,6 +104,12 @@
   border-radius: 8px;
   border: 2px solid #facc15;
   animation: fadeIn 1s ease-out;
+}
+
+@media (min-width: 640px) {
+  .heroFallback {
+    max-width: 1200px;
+  }
 }
 
 .fallbackLogo {
