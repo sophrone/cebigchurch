@@ -57,8 +57,8 @@ export default function Testimony() {
         <Image
           src="/cebc-logo.png"
           alt="CEBC Logo"
-          width={40}
-          height={40}
+          width={32}
+          height={32}
           className={styles.formIcon}
         />
       </section>
@@ -71,20 +71,32 @@ export default function Testimony() {
             {
               name: "Temi",
               text: "God blessed me with a new job after months of praying!",
-              class: styles.temiCard,
+              image: "/image8.jpg",
             },
             {
               name: "Chisom",
               text: "I was healed from a long illness—praise God!",
-              class: styles.chisomCard,
+              image: "/image9.jpg",
             },
             {
               name: "David",
               text: "My family came together in unity through CEBC’s prayers!",
-              class: styles.davidCard,
+              image: "/image10.jpg",
+            },
+            {
+              name: "Sarah",
+              text: "I found peace in Christ through CEBC’s youth services!",
+              image: "/image11.jpg",
             },
           ].map((testimony, index) => (
-            <div key={index} className={`${styles.testimonyCard} ${testimony.class}`}>
+            <div key={index} className={styles.testimonyCard}>
+              <Image
+                src={testimony.image}
+                alt={`${testimony.name}'s photo`}
+                width={80}
+                height={80}
+                className={styles.testimonyImage}
+              />
               <h3 className={styles.testimonyName}>{testimony.name}</h3>
               <p className={styles.testimonyText}>{testimony.text}</p>
             </div>

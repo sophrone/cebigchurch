@@ -4,6 +4,9 @@
   align-items: center;
   background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
   color: #1e40af;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .hero {
@@ -12,13 +15,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
   background-image: url("/image15.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(0.9);
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .hero::before {
@@ -41,7 +47,10 @@
 .heroContent {
   text-align: center;
   z-index: 1;
+  width: 100%;
   max-width: 1200px;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .praiseBadge {
@@ -97,12 +106,14 @@
 }
 
 .form {
-  padding: 2rem 1rem;
+  padding: 1.5rem 0.5rem;
   width: 100%;
   text-align: center;
   background: #ffffff;
   border-top: 2px solid #facc15;
-  position: relative;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -130,8 +141,11 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .formGroup {
@@ -157,6 +171,8 @@
   border: 1px solid #1e40af;
   border-radius: 4px;
   padding: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -196,27 +212,29 @@
 }
 
 .formIcon {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  width: 32px;
-  height: 32px;
+  display: block;
+  margin: 1rem auto 0;
+  width: 24px;
+  height: 24px;
   animation: spin 10s linear infinite;
 }
 
 @media (min-width: 640px) {
   .formIcon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 }
 
 .testimonies {
-  padding: 2rem 1rem;
+  padding: 1.5rem 0.5rem;
   width: 100%;
   text-align: center;
   background: #ffffff;
   border-top: 2px solid #facc15;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -242,42 +260,53 @@
 
 .testimonyGrid {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 #e5e7eb;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.testimonyGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.testimonyGrid::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+.testimonyGrid::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 4px;
 }
 
 @media (min-width: 640px) {
   .testimonyGrid {
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 }
 
 .testimonyCard {
-  position: relative;
+  background: #ffffff;
   border: 2px solid #facc15;
   border-radius: 8px;
   padding: 1.5rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.85);
-}
-
-.testimonyCard::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(30, 64, 175, 0.5);
-  border-radius: 6px;
-  z-index: 1;
+  box-sizing: border-box;
 }
 
 .testimonyCard:nth-child(1) {
@@ -295,42 +324,46 @@
   animation-fill-mode: both;
 }
 
+.testimonyCard:nth-child(4) {
+  animation: fadeIn 1s ease-out 0.8s;
+  animation-fill-mode: both;
+}
+
 .testimonyCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.5);
 }
 
-.temiCard {
-  background-image: url("/image13.jpg");
+.testimonyImage {
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  transition: filter 0.3s ease;
 }
 
-.chisomCard {
-  background-image: url("/image14.jpg");
+.testimonyImage:hover {
+  filter: brightness(1.1);
 }
 
-.davidCard {
-  background-image: url("/image15.jpg");
+@media (min-width: 640px) {
+  .testimonyImage {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .testimonyName {
   font-family: var(--font-poppins), sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #f3f4f6;
+  color: #1e40af;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 2;
 }
 
 .testimonyText {
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #facc15;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 2;
+  color: #1e40af;
 }
 
 ::selection {
