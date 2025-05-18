@@ -14,6 +14,22 @@
   justify-content: center;
   padding: 1.5rem 0.5rem;
   background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+  background-image: url("/image15.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.9);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 64, 175, 0.5);
+  z-index: 0;
 }
 
 @media (min-width: 640px) {
@@ -67,7 +83,8 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #1e40af;
+  color: #f3f4f6;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out 0.2s;
   animation-fill-mode: both;
@@ -238,13 +255,29 @@
 }
 
 .testimonyCard {
-  background: rgba(30, 64, 175, 0.1);
+  position: relative;
   border: 2px solid #facc15;
   border-radius: 8px;
   padding: 1.5rem;
   width: 100%;
   max-width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.85);
+}
+
+.testimonyCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 64, 175, 0.5);
+  border-radius: 6px;
+  z-index: 1;
 }
 
 .testimonyCard:nth-child(1) {
@@ -267,80 +300,37 @@
   box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
 }
 
+.temiCard {
+  background-image: url("/image13.jpg");
+}
+
+.chisomCard {
+  background-image: url("/image14.jpg");
+}
+
+.davidCard {
+  background-image: url("/image15.jpg");
+}
+
 .testimonyName {
   font-family: var(--font-poppins), sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #1e40af;
+  color: #f3f4f6;
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
 }
 
 .testimonyText {
   font-family: var(--font-montserrat), sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: #1e40af;
-}
-
-.cta {
-  padding: 2rem 1rem;
-  text-align: center;
-  background: #1e40af;
-}
-
-@media (min-width: 640px) {
-  .cta {
-    padding: 3rem 1.5rem;
-  }
-}
-
-.ctaTitle {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 1.75rem;
-  font-weight: 600;
   color: #facc15;
-  margin-bottom: 1rem;
-  animation: fadeIn 1s ease-out;
-}
-
-@media (min-width: 640px) {
-  .ctaTitle {
-    font-size: 2.25rem;
-  }
-}
-
-.ctaText {
-  font-family: var(--font-montserrat), sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #f3f4f6;
-  margin-bottom: 1.5rem;
-  animation: fadeIn 1s ease-out 0.2s;
-  animation-fill-mode: both;
-}
-
-@media (min-width: 640px) {
-  .ctaText {
-    font-size: 1.125rem;
-  }
-}
-
-.ctaButton {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e40af;
-  background: linear-gradient(90deg, #facc15, #f97316);
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: popIn 0.8s ease-out;
-}
-
-.ctaButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
 }
 
 ::selection {

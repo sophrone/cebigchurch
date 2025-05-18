@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./Testimony.module.css";
 
 export default function Testimony() {
@@ -18,7 +17,7 @@ export default function Testimony() {
           <div className={styles.praiseBadge}>Praise Report</div>
           <h1 className={styles.heroTitle}>Share Your Testimony</h1>
           <p className={styles.heroText}>
-            Tell us how God’s moving in your life!
+            We celebrate God’s word in your life. Kindly share your testimonies with us today.
           </p>
         </div>
       </section>
@@ -64,41 +63,33 @@ export default function Testimony() {
         />
       </section>
 
-      {/* Testimony Showcase Section */}
+      {/* Praise Reports Section */}
       <section className={styles.testimonies}>
-        <h2 className={styles.testimonyTitle}>Our Community’s Praises</h2>
+        <h2 className={styles.testimonyTitle}>Praise Reports</h2>
         <div className={styles.testimonyGrid}>
           {[
             {
               name: "Temi",
               text: "God blessed me with a new job after months of praying!",
+              class: styles.temiCard,
             },
             {
               name: "Chisom",
               text: "I was healed from a long illness—praise God!",
+              class: styles.chisomCard,
             },
             {
               name: "David",
               text: "My family came together in unity through CEBC’s prayers!",
+              class: styles.davidCard,
             },
           ].map((testimony, index) => (
-            <div key={index} className={styles.testimonyCard}>
+            <div key={index} className={`${styles.testimonyCard} ${testimony.class}`}>
               <h3 className={styles.testimonyName}>{testimony.name}</h3>
               <p className={styles.testimonyText}>{testimony.text}</p>
             </div>
           ))}
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className={styles.cta}>
-        <h2 className={styles.ctaTitle}>Join Our Services</h2>
-        <p className={styles.ctaText}>
-          Come worship with us and experience God’s power!
-        </p>
-        <Link href="/live-service" className={styles.ctaButton}>
-          Join Now
-        </Link>
       </section>
     </main>
   );
