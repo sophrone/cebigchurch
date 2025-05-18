@@ -26,22 +26,22 @@ export default function Podcast() {
             {
               title: "Episode 1: Finding Faith",
               text: "Discover how to strengthen your faith in tough times.",
-              image: "/image12.jpg",
+              image: "/image1.jpg",
             },
             {
               title: "Episode 2: Youth on Fire",
               text: "Get inspired to live boldly for Christ!",
-              image: "/image13.jpg",
+              image: "/image2.jpg",
             },
             {
               title: "Episode 3: Prayer Power",
               text: "Learn the impact of prayer in your daily life.",
-              image: "/image14.jpg",
+              image: "/image6.jpg",
             },
             {
               title: "Episode 4: God’s Plan",
               text: "Understand God’s purpose for your journey.",
-              image: "/image15.jpg",
+              image: "/image7.jpg",
             },
           ].map((episode, index) => (
             <div key={index} className={styles.podcastCard}>
@@ -51,6 +51,7 @@ export default function Podcast() {
                 width={280}
                 height={160}
                 className={styles.podcastImage}
+                priority
               />
               <h3 className={styles.podcastTitle}>{episode.title}</h3>
               <p className={styles.podcastText}>{episode.text}</p>
