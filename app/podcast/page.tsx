@@ -11,9 +11,9 @@ export default function Podcast() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.podcastBadge}>New Episodes</div>
-          <h1 className={styles.heroTitle}>CEBC Youth Podcasts</h1>
+          <h1 className={styles.heroTitle}>CEBC Podcasts</h1>
           <p className={styles.heroText}>
-            Tune into God’s word with our youth-inspired podcasts!
+            Get inspired by the word everyday and on the go!
           </p>
         </div>
       </section>
@@ -52,6 +52,9 @@ export default function Podcast() {
                 height={160}
                 className={styles.podcastImage}
                 priority
+                loading="eager"
+                data-image={episode.image}
+                onError={() => console.error(`Failed to load image: ${episode.image}`)}
               />
               <h3 className={styles.podcastTitle}>{episode.title}</h3>
               <p className={styles.podcastText}>{episode.text}</p>
