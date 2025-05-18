@@ -1,0 +1,370 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+  color: #1e40af;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+}
+
+.heroContent {
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.podcastBadge {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e40af;
+  background: #facc15;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .podcastBadge {
+    font-size: 1rem;
+  }
+}
+
+.heroTitle {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 0 0 5px rgba(250, 204, 21, 0.6);
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-out;
+}
+
+@media (min-width: 640px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+}
+
+.heroText {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1e40af;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+@media (min-width: 640px) {
+  .heroText {
+    font-size: 1.25rem;
+  }
+}
+
+.podcasts {
+  padding: 1.5rem 0.5rem;
+  width: 100%;
+  text-align: center;
+  background: #ffffff;
+  border-top: 2px solid #facc15;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .podcasts {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.podcastTitle {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #facc15;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out;
+}
+
+@media (min-width: 640px) {
+  .podcastTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.podcastGrid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 #e5e7eb;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.podcastGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.podcastGrid::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+.podcastGrid::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 4px;
+}
+
+@media (min-width: 640px) {
+  .podcastGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+}
+
+.podcastCard {
+  background: #ffffff;
+  border: 2px solid #facc15;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 280px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.podcastCard:nth-child(1) {
+  animation: fadeIn 1s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+.podcastCard:nth-child(2) {
+  animation: fadeIn 1s ease-out 0.4s;
+  animation-fill-mode: both;
+}
+
+.podcastCard:nth-child(3) {
+  animation: fadeIn 1s ease-out 0.6s;
+  animation-fill-mode: both;
+}
+
+.podcastCard:nth-child(4) {
+  animation: fadeIn 1s ease-out 0.8s;
+  animation-fill-mode: both;
+}
+
+.podcastCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.5);
+}
+
+.podcastImage {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: filter 0.3s ease;
+}
+
+.podcastImage:hover {
+  filter: brightness(1.1);
+}
+
+.podcastTitle {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1e40af;
+  margin-bottom: 0.5rem;
+}
+
+.podcastText {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.podcastButton {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e40af;
+  background: linear-gradient(90deg, #facc15, #f97316);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.8s ease-out;
+}
+
+.podcastButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+}
+
+.cta {
+  padding: 1.5rem 0.5rem;
+  width: 100%;
+  text-align: center;
+  background: #1e40af;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .cta {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.ctaTitle {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #facc15;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-out;
+}
+
+@media (min-width: 640px) {
+  .ctaTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.ctaText {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #f3f4f6;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+@media (min-width: 640px) {
+  .ctaText {
+    font-size: 1.125rem;
+  }
+}
+
+.ctaButton {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e40af;
+  background: linear-gradient(90deg, #facc15, #f97316);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.8s ease-out;
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+}
+
+.ctaIcon {
+  display: block;
+  margin: 1rem auto 0;
+  width: 24px;
+  height: 24px;
+  animation: spin 10s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .ctaIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+::selection {
+  background: #facc15;
+  color: #1e40af;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
