@@ -69,23 +69,23 @@ export default function Testimony() {
         <div className={styles.testimonyGrid}>
           {[
             {
-              name: "Temi",
-              text: "God blessed me with a new job after months of praying!",
+              name: "Austinray",
+              text: "My life has been transformed by the word! Glory!",
               image: "/image8.jpg",
             },
             {
-              name: "Chisom",
-              text: "I was healed from a long illness—praise God!",
+              name: "Francis",
+              text: "I experience so much grace like never before seen!",
               image: "/image9.jpg",
             },
             {
-              name: "David",
-              text: "My family came together in unity through CEBC’s prayers!",
+              name: "Chidera",
+              text: "My life has moved from one level of glory to another!",
               image: "/image10.jpg",
             },
             {
-              name: "Sarah",
-              text: "I found peace in Christ through CEBC’s youth services!",
+              name: "Michael",
+              text: "The word of God is real! I know this because it works for me. Glory!",
               image: "/image11.jpg",
             },
           ].map((testimony, index) => (
