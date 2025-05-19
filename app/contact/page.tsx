@@ -58,8 +58,8 @@ export default function Contact() {
             <Image
               src="/instagram-logo.png"
               alt="Instagram"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className={styles.socialIcon}
               onError={() => console.error("Failed to load image: /instagram-logo.png")}
             />
@@ -68,8 +68,8 @@ export default function Contact() {
             <Image
               src="/youtube-logo.png"
               alt="YouTube"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className={styles.socialIcon}
               onError={() => console.error("Failed to load image: /youtube-logo.png")}
             />
@@ -78,16 +78,20 @@ export default function Contact() {
             <Image
               src="/kingschat-logo.png"
               alt="KingsChat"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className={styles.socialIcon}
               onError={() => console.error("Failed to load image: /kingschat-logo.png")}
             />
           </Link>
         </div>
         <div className={styles.contactInfo}>
-          <p className={styles.contactText}>Email: <a href="mailto:cebigchurchtestimonies@gmail.com" className={styles.contactLink}>cebigchurchtestimonies@gmail.com</a></p>
-          <p className={styles.contactText}>Phone: <a href="tel:+2341234567890" className={styles.contactLink}>+234 123 456 7890</a></p>
+          <a href="mailto:cebigchurchtestimonies@gmail.com" className={styles.contactLink}>
+            📧 cebigchurchtestimonies@gmail.com
+          </a>
+          <a href="tel:+2341234567890" className={styles.contactLink}>
+            📞 +234 123 456 7890
+          </a>
         </div>
       </section>
 
