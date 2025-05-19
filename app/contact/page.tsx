@@ -54,34 +54,34 @@ export default function Contact() {
       <section className={styles.social}>
         <h2 className={styles.socialTitle}>Connect With Us</h2>
         <div className={styles.socialLinks}>
-          <Link href="https://instagram.com" className={styles.socialLink}>
+          <Link href="https://www.instagram.com/ce_bigchurch/" className={styles.socialLink}>
             <Image
-              src="/image8.jpg"
+              src="/instagram-logo.png"
               alt="Instagram"
               width={32}
               height={32}
               className={styles.socialIcon}
-              onError={() => console.error("Failed to load image: /image8.jpg")}
+              onError={() => console.error("Failed to load image: /instagram-logo.png")}
             />
           </Link>
-          <Link href="https://x.com" className={styles.socialLink}>
+          <Link href="https://www.youtube.com/@cebigchurch" className={styles.socialLink}>
             <Image
-              src="/image9.jpg"
-              alt="X"
-              width={32}
-              height={32}
-              className={styles.socialIcon}
-              onError={() => console.error("Failed to load image: /image9.jpg")}
-            />
-          </Link>
-          <Link href="https://youtube.com" className={styles.socialLink}>
-            <Image
-              src="/cebc-logo.png"
+              src="/youtube-logo.png"
               alt="YouTube"
               width={32}
               height={32}
               className={styles.socialIcon}
-              onError={() => console.error("Failed to load image: /cebc-logo.png")}
+              onError={() => console.error("Failed to load image: /youtube-logo.png")}
+            />
+          </Link>
+          <Link href="https://kingschat.online/user/ce_bigchurch" className={styles.socialLink}>
+            <Image
+              src="/kingschat-logo.png"
+              alt="KingsChat"
+              width={32}
+              height={32}
+              className={styles.socialIcon}
+              onError={() => console.error("Failed to load image: /kingschat-logo.png")}
             />
           </Link>
         </div>
