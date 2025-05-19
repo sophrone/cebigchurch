@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import styles from "./AudioPlayer.module.css";
 
 interface AudioPlayerProps {
   title: string;
   audioSrc: string;
+  imageSrc: string;
   onCloseComplete: (title: string) => void;
 }
 
-export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioPlayerProps) {
+export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
@@ -119,7 +121,14 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
       </button>
       <div className={styles.controls}>
         <div className={styles.artContainer}>
-          <div className={styles.artPlaceholder} />
+          <Image
+            src={imageSrc}
+            alt={title}
+            width={100}
+            height={100}
+            className={styles.artImage}
+            onError={() => console.error(`Failed to load image: ${imageSrc}`)}
+          />
           <h3 className={styles.title}>{title}</h3>
         </div>
         <div className={styles.progressWave}>
@@ -135,12 +144,12 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
             />
             <span className={styles.time}>{formatTime(duration)}</span>
           </div>
-          <div className={styles.waveContainer}>
-            {[...Array(10)].map((_, i) => (
+          <div className={`${styles.waveContainer} ${isPlaying ? styles.wavePulse : ""}`}>
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
-                className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`}
-                style={{ height: `${10 + i * 2}px` }}
+                className={styles.waveBar}
+                style={{ height: `${4 + Math.random() * 8}px` }}
               />
             ))}
           </div>

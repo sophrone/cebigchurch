@@ -66,16 +66,17 @@
   align-items: center;
 }
 
-.artPlaceholder {
+.artImage {
   width: 100px;
   height: 100px;
-  background: #e5e7eb;
   border: 2px solid #facc15;
   border-radius: 4px;
+  object-fit: cover;
+  background: #e5e7eb; /* Fallback for failed images */
 }
 
 @media (min-width: 640px) {
-  .artPlaceholder {
+  .artImage {
     width: 120px;
     height: 120px;
   }
@@ -214,7 +215,7 @@
 .waveContainer {
   display: flex;
   justify-content: center;
-  gap: 0.1rem;
+  gap: 0.5px;
   height: 14px;
 }
 
@@ -228,23 +229,30 @@
   .waveContainer {
     height: 20px;
   }
-}
 
-.waveBar {
-  width: 2px;
-  background: #facc15;
-  border-radius: 1px;
-  transition: transform 0.3s ease;
-}
-
-@media (min-width: 640px) {
-  .waveBar {
-    width: 2.5px;
+  .waveContainer > .waveBar:nth-child(n + 21) {
+    display: block;
   }
+}
+
+.waveContainer > .waveBar:nth-child(n + 21) {
+  display: none;
 }
 
 .wavePulse {
   animation: wavePulse 0.8s ease-in-out infinite alternate;
+}
+
+.waveBar {
+  width: 1px;
+  background: #facc15;
+  border-radius: 0.5px;
+}
+
+@media (min-width: 640px) {
+  .waveBar {
+    width: 1px;
+  }
 }
 
 .controlButtons {
@@ -457,7 +465,7 @@
 
 @keyframes wavePulse {
   0% {
-    transform: scaleY(0.4);
+    transform: scaleY(0.6);
   }
   100% {
     transform: scaleY(1);

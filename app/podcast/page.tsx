@@ -115,11 +115,12 @@ export default function Podcast() {
         />
       </section>
 
-      {/* Audio Player Modal */}
+      {/* Audio Player */}
       {selectedEpisode && (
         <AudioPlayer
           title={selectedEpisode.title}
           audioSrc={selectedEpisode.audioSrc}
+          imageSrc={selectedEpisode.image}
           onCloseComplete={setClosedEpisode}
         />
       )}
