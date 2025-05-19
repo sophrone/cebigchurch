@@ -2,9 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import AudioPlayer from "../components/AudioPlayer";
 import styles from "./Podcast.module.css";
 
 export default function Podcast() {
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
+
+  const handlePlayClick = (episode) => {
+    setSelectedEpisode(episode);
+  };
+
+  const handleClosePlayer = () => {
+    setSelectedEpisode(null);
+  };
+
   return (
     <main className={styles.main}>
       {/* Hero Section */}
@@ -27,21 +39,25 @@ export default function Podcast() {
               title: "Episode 1: Finding Faith",
               text: "Discover how to strengthen your faith in tough times.",
               image: "/image1.jpg",
+              audioSrc: "/Drive.mp3",
             },
             {
               title: "Episode 2: Youth on Fire",
               text: "Get inspired to live boldly for Christ!",
               image: "/image2.jpg",
+              audioSrc: "/Bliss.mp3",
             },
             {
               title: "Episode 3: Prayer Power",
               text: "Learn the impact of prayer in your daily life.",
               image: "/image6.jpg",
+              audioSrc: "/Fulfillment.mp3",
             },
             {
               title: "Episode 4: God’s Plan",
               text: "Understand God’s purpose for your journey.",
               image: "/image7.jpg",
+              audioSrc: "/Infinity.mp3",
             },
           ].map((episode, index) => (
             <div key={index} className={styles.podcastCard}>
@@ -58,9 +74,12 @@ export default function Podcast() {
               />
               <h3 className={styles.podcastTitle}>{episode.title}</h3>
               <p className={styles.podcastText}>{episode.text}</p>
-              <Link href="#" className={styles.podcastButton}>
+              <button
+                onClick={() => handlePlayClick(episode)}
+                className={styles.podcastButton}
+              >
                 Listen Now
-              </Link>
+              </button>
             </div>
           ))}
         </div>
@@ -72,7 +91,7 @@ export default function Podcast() {
         <p className={styles.ctaText}>
           Subscribe to our podcast for weekly inspiration and youth-focused messages!
         </p>
-        <Link href="#" className={styles.ctaButton}>
+        <Link href="https://open.spotify.com/show/cebc-youth" className={styles.ctaButton}>
           Subscribe Now
         </Link>
         <Image
@@ -83,6 +102,15 @@ export default function Podcast() {
           className={styles.ctaIcon}
         />
       </section>
+
+      {/* Audio Player Modal */}
+      {selectedEpisode && (
+        <AudioPlayer
+          title={selectedEpisode.title}
+          audioSrc={selectedEpisode.audioSrc}
+          onClose={handleClosePlayer}
+        />
+      )}
     </main>
   );
 }
