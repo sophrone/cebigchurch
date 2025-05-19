@@ -70,7 +70,7 @@ export default function About() {
       <section className={styles.cta}>
         <h2 className={styles.ctaTitle}>Join Our Community</h2>
         <p className={styles.ctaText}>
-          Ready to be part of something bigger? Get involved with CEBC Youth Church today!
+          Ready to be part of something bigger? Get involved with Christ Embassy Big Church today!
         </p>
         <Link href="/contact" className={styles.ctaButton}>
           Get Involved
