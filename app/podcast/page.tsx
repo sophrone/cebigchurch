@@ -50,13 +50,13 @@ export default function Podcast() {
             {
               title: "Episode 1: Finding Faith",
               text: "Discover how to strengthen your faith in tough times.",
-              image: "/image1.jpg",
+              image: "/image7.jpg",
               audioSrc: "/Drive.mp3",
             },
             {
               title: "Episode 2: Youth on Fire",
               text: "Get inspired to live boldly for Christ!",
-              image: "/image2.jpg",
+              image: "/image6.jpg",
               audioSrc: "/Bliss.mp3",
             },
             {
