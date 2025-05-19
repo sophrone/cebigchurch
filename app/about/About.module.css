@@ -186,16 +186,37 @@
 }
 
 .teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: row;
   gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 #e5e7eb;
   padding: 0 0.5rem;
   box-sizing: border-box;
 }
 
+.teamGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.teamGrid::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+.teamGrid::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 4px;
+}
+
 @media (min-width: 640px) {
   .teamGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 }
 
@@ -206,13 +227,28 @@
   padding: 1rem;
   width: 100%;
   max-width: 200px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
-  animation: fadeIn 1s ease-out;
+}
+
+.teamCard:nth-child(1) {
+  animation: fadeIn 1s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+.teamCard:nth-child(2) {
+  animation: fadeIn 1s ease-out 0.4s;
+  animation-fill-mode: both;
+}
+
+.teamCard:nth-child(3) {
+  animation: fadeIn 1s ease-out 0.6s;
   animation-fill-mode: both;
 }
 
