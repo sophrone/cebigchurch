@@ -1,31 +1,26 @@
-.modal {
+.player {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #1e40af;
+  border-top: 2px solid #facc15;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  box-shadow: 0 -4px 16px rgba(250, 204, 21, 0.3);
   z-index: 1000;
-  animation: fadeIn 0.5s ease-out;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  animation: slideUp 0.5s ease-out;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.player {
-  background: #1e40af;
-  border: 2px solid #facc15;
-  border-radius: 16px;
-  padding: 1.5rem;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(250, 204, 21, 0.4);
-  animation: popIn 0.5s ease-out;
-  box-sizing: border-box;
+@media (min-width: 640px) {
+  .player {
+    padding: 1rem 1.5rem;
+  }
 }
 
 .closeButton {
@@ -35,7 +30,7 @@
   background: none;
   border: none;
   color: #facc15;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -49,26 +44,35 @@
 
 .title {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #f3f4f6;
-  margin-bottom: 1rem;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.5s ease-out;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 1rem;
+    max-width: 200px;
+  }
 }
 
 .waveform {
   display: flex;
   justify-content: center;
-  gap: 0.25rem;
-  margin-bottom: 1rem;
-  height: 40px;
+  gap: 0.2rem;
+  height: 20px;
 }
 
 .waveBar {
-  width: 4px;
+  width: 3px;
   background: #facc15;
-  border-radius: 2px;
+  border-radius: 1.5px;
   animation: none;
 }
 
@@ -88,26 +92,24 @@
 .waveBar:nth-child(4) {
   animation-delay: 0.45s;
 }
-.waveBar:nth-child(5) {
-  animation-delay: 0.6s;
-}
 
 .controls {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
 }
 
 .playButton {
   font-family: var(--font-poppins), sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #1e40af;
   background: linear-gradient(90deg, #facc15, #f97316);
   border: none;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,26 +123,42 @@
   box-shadow: 0 4px 12px rgba(250, 204, 21, 0.6);
 }
 
+@media (min-width: 640px) {
+  .playButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+}
+
 .progressContainer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  width: 100%;
+  gap: 0.25rem;
+  width: 40%;
+  min-width: 120px;
 }
 
 .time {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #f3f4f6;
-  min-width: 40px;
+  min-width: 30px;
   text-align: center;
+}
+
+@media (min-width: 640px) {
+  .time {
+    font-size: 0.875rem;
+    min-width: 35px;
+  }
 }
 
 .progressBar {
   flex: 1;
-  height: 6px;
+  height: 4px;
   background: #e5e7eb;
-  border-radius: 3px;
+  border-radius: 2px;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -148,16 +166,16 @@
 
 .progressBar::-webkit-slider-thumb {
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #facc15;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
 }
 
 .progressBar::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #facc15;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
@@ -166,20 +184,27 @@
 .volumeContainer {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  width: 50%;
+  gap: 0.25rem;
+  width: 20%;
+  min-width: 60px;
 }
 
 .volumeIcon {
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #f3f4f6;
+}
+
+@media (min-width: 640px) {
+  .volumeIcon {
+    font-size: 0.875rem;
+  }
 }
 
 .volumeBar {
   flex: 1;
-  height: 6px;
+  height: 4px;
   background: #e5e7eb;
-  border-radius: 3px;
+  border-radius: 2px;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -187,48 +212,19 @@
 
 .volumeBar::-webkit-slider-thumb {
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #facc15;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
 }
 
 .volumeBar::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #facc15;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
-}
-
-@media (min-width: 640px) {
-  .player {
-    padding: 2rem;
-    max-width: 500px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .playButton {
-    width: 56px;
-    height: 56px;
-    font-size: 1.75rem;
-  }
-
-  .progressContainer {
-    gap: 1rem;
-  }
-
-  .time {
-    font-size: 1rem;
-  }
-
-  .volumeContainer {
-    width: 40%;
-  }
 }
 
 ::selection {
@@ -236,10 +232,21 @@
   color: #1e40af;
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -272,7 +279,7 @@
 
 @keyframes wavePulse {
   0% {
-    transform: scaleY(0.2);
+    transform: scaleY(0.3);
   }
   100% {
     transform: scaleY(1);
