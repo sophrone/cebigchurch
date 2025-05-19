@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AudioPlayer from "../components/AudioPlayer";
 import styles from "./Podcast.module.css";
 
@@ -15,11 +15,19 @@ interface Episode {
 
 export default function Podcast() {
   const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
+  const [closedEpisode, setClosedEpisode] = useState<string | null>(null);
 
   const handlePlayClick = (episode: Episode) => {
     console.log(`Selected episode: ${episode.title}`);
     setSelectedEpisode(episode);
   };
+
+  useEffect(() => {
+    if (closedEpisode && selectedEpisode && selectedEpisode.title === closedEpisode) {
+      setSelectedEpisode(null);
+      setClosedEpisode(null);
+    }
+  }, [closedEpisode, selectedEpisode]);
 
   return (
     <main className={styles.main}>
@@ -112,8 +120,7 @@ export default function Podcast() {
         <AudioPlayer
           title={selectedEpisode.title}
           audioSrc={selectedEpisode.audioSrc}
-          isOpen={!!selectedEpisode}
-          setEpisode={setSelectedEpisode}
+          onCloseComplete={setClosedEpisode}
         />
       )}
     </main>

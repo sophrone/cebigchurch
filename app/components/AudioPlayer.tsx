@@ -6,12 +6,12 @@ import styles from "./AudioPlayer.module.css";
 interface AudioPlayerProps {
   title: string;
   audioSrc: string;
-  isOpen: boolean;
-  setEpisode: (episode: null) => void;
+  onCloseComplete: (title: string) => void;
 }
 
-export default function AudioPlayer({ title, audioSrc, isOpen, setEpisode }: AudioPlayerProps) {
+export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -81,7 +81,9 @@ export default function AudioPlayer({ title, audioSrc, isOpen, setEpisode }: Aud
   };
 
   const handleClose = () => {
-    setEpisode(null);
+    console.log(`Closing player for: ${title}`);
+    setIsOpen(false);
+    onCloseComplete(title);
   };
 
   const formatTime = (time: number) => {
