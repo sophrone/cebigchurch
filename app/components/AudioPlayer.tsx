@@ -15,8 +15,9 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [showVolumeLabel, setShowVolumeLabel] = useState(false);
+  const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -69,6 +70,7 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
       const newTime = Number(e.target.value);
       audio.currentTime = newTime;
       setCurrentTime(newTime);
+      console.log(`Progress changed to: ${newTime}s`);
     }
   };
 
@@ -78,9 +80,14 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
       const newVolume = Number(e.target.value);
       audio.volume = newVolume;
       setVolume(newVolume);
-      setShowVolumeLabel(true);
+      setIsVolumeVisible(true);
       console.log(`Volume changed to: ${Math.round(newVolume * 100)}%`);
-      setTimeout(() => setShowVolumeLabel(false), 1000);
+      if (volumeTimeoutRef.current) {
+        clearTimeout(volumeTimeoutRef.current);
+      }
+      volumeTimeoutRef.current = setTimeout(() => {
+        setIsVolumeVisible(false);
+      }, 2000);
     }
   };
 
@@ -138,8 +145,8 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
           />
           <span className={styles.time}>{formatTime(duration)}</span>
         </div>
-        <div className={styles.volumeContainer}>
-          <span className={`${styles.volumeIcon} ${showVolumeLabel ? styles.pulse : ""}`}>
+        <div className={`${styles.volumeContainer} ${isVolumeVisible ? styles.active : ""}`}>
+          <span className={`${styles.volumeIcon} ${isVolumeVisible ? styles.pulse : ""}`}>
             {getVolumeIcon()}
           </span>
           <input
@@ -151,9 +158,6 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
             onChange={handleVolumeChange}
             className={styles.volumeBar}
           />
-          {showVolumeLabel && (
-            <span className={styles.volumeLabel}>{Math.round(volume * 100)}</span>
-          )}
         </div>
       </div>
     </div>
