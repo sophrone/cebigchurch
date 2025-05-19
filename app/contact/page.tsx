@@ -55,14 +55,39 @@ export default function Contact() {
         <h2 className={styles.socialTitle}>Connect With Us</h2>
         <div className={styles.socialLinks}>
           <Link href="https://instagram.com" className={styles.socialLink}>
-            Instagram
+            <Image
+              src="/image8.jpg"
+              alt="Instagram"
+              width={32}
+              height={32}
+              className={styles.socialIcon}
+              onError={() => console.error("Failed to load image: /image8.jpg")}
+            />
           </Link>
           <Link href="https://x.com" className={styles.socialLink}>
-            X
+            <Image
+              src="/image9.jpg"
+              alt="X"
+              width={32}
+              height={32}
+              className={styles.socialIcon}
+              onError={() => console.error("Failed to load image: /image9.jpg")}
+            />
           </Link>
           <Link href="https://youtube.com" className={styles.socialLink}>
-            YouTube
+            <Image
+              src="/cebc-logo.png"
+              alt="YouTube"
+              width={32}
+              height={32}
+              className={styles.socialIcon}
+              onError={() => console.error("Failed to load image: /cebc-logo.png")}
+            />
           </Link>
+        </div>
+        <div className={styles.contactInfo}>
+          <p className={styles.contactText}>Email: <a href="mailto:cebigchurchtestimonies@gmail.com" className={styles.contactLink}>cebigchurchtestimonies@gmail.com</a></p>
+          <p className={styles.contactText}>Phone: <a href="tel:+2341234567890" className={styles.contactLink}>+234 123 456 7890</a></p>
         </div>
       </section>
 
@@ -74,15 +99,15 @@ export default function Contact() {
           123 Faith Avenue, Lagos, Nigeria
         </p>
         <Image
-          src="/image6.jpg"
+          src="/image3.jpg"
           alt="Map of Christ Embassy Big Church location"
           width={600}
           height={300}
           className={styles.mapImage}
           priority
           loading="eager"
-          data-image="/image6.jpg"
-          onError={() => console.error("Failed to load image: /image6.jpg")}
+          data-image="/image3.jpg"
+          onError={() => console.error("Failed to load image: /image3.jpg")}
         />
       </section>
     </main>
