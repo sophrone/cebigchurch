@@ -11,9 +11,9 @@ export default function About() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.badge}>Our Story</div>
-          <h1 className={styles.heroTitle}>About CEBC Youth Church</h1>
+          <h1 className={styles.heroTitle}>About Christ Embassy Big Church</h1>
           <p className={styles.heroText}>
-            Empowering youth to live for Christ!
+            The Church without boundaries!
           </p>
         </div>
       </section>
@@ -22,7 +22,7 @@ export default function About() {
       <section className={styles.mission}>
         <h2 className={styles.missionTitle}>Our Mission & Vision</h2>
         <p className={styles.missionText}>
-          At CEBC Youth Church, we’re passionate about guiding young people to discover their purpose in Christ. Our mission is to create a vibrant community where youth can grow spiritually, connect with others, and make a positive impact in the world. We envision a generation that’s bold, faith-filled, and ready to lead with love and purpose.
+          At Christ Embassy Big Church, we’re passionate about guiding young people to discover their purpose in Christ. Our mission is to create a vibrant community where youth can grow spiritually, connect with others, and make a positive impact in the world. We envision a generation that’s bold, faith-filled, and ready to lead with love and purpose.
         </p>
       </section>
 
@@ -32,19 +32,19 @@ export default function About() {
         <div className={styles.teamGrid}>
           {([
             {
-              name: "Pastor John Doe",
-              role: "Youth Pastor",
+              name: "Pastor Daniel Atima",
+              role: "Pastor",
               image: "/image6.jpg",
             },
             {
-              name: "Sarah Smith",
-              role: "Worship Leader",
-              image: "/image7.jpg",
+              name: "Bro Austin Duru",
+              role: "Fellowship Leader",
+              image: "/image8.jpg",
             },
             {
-              name: "Mike Johnson",
-              role: "Community Outreach",
-              image: "/image6.jpg",
+              name: "Bro Francis Ugochukwu",
+              role: "Community Outreach Coordinator",
+              image: "/image9.jpg",
             },
           ]).map((member, index) => (
             <div key={index} className={styles.teamCard}>
