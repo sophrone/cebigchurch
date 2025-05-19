@@ -6,10 +6,11 @@ import styles from "./AudioPlayer.module.css";
 interface AudioPlayerProps {
   title: string;
   audioSrc: string;
-  onClose: () => void;
+  isOpen: boolean;
+  setEpisode: (episode: null) => void;
 }
 
-export default function AudioPlayer({ title, audioSrc, onClose }: AudioPlayerProps) {
+export default function AudioPlayer({ title, audioSrc, isOpen, setEpisode }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -32,18 +33,22 @@ export default function AudioPlayer({ title, audioSrc, onClose }: AudioPlayerPro
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    // Auto-play on load
-    audio.play().then(() => setIsPlaying(true)).catch((error) => {
-      console.error("Auto-play failed:", error);
+    if (isOpen) {
+      audio.play().then(() => setIsPlaying(true)).catch((error) => {
+        console.error("Auto-play failed:", error);
+        setIsPlaying(false);
+      });
+    } else {
+      audio.pause();
       setIsPlaying(false);
-    });
+    }
 
     return () => {
       audio.pause();
       audio.removeEventListener("loadedmetadata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
     };
-  }, [audioSrc]);
+  }, [isOpen, audioSrc]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -75,16 +80,22 @@ export default function AudioPlayer({ title, audioSrc, onClose }: AudioPlayerPro
     }
   };
 
+  const handleClose = () => {
+    setEpisode(null);
+  };
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  if (!isOpen) return null;
+
   return (
     <div className={styles.modal}>
       <div className={styles.player}>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.closeButton} onClick={handleClose}>
           ×
         </button>
         <h3 className={styles.title}>{title}</h3>

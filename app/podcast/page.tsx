@@ -6,15 +6,19 @@ import { useState } from "react";
 import AudioPlayer from "../components/AudioPlayer";
 import styles from "./Podcast.module.css";
 
+interface Episode {
+  title: string;
+  text: string;
+  image: string;
+  audioSrc: string;
+}
+
 export default function Podcast() {
-  const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
 
-  const handlePlayClick = (episode) => {
+  const handlePlayClick = (episode: Episode) => {
+    console.log(`Selected episode: ${episode.title}`);
     setSelectedEpisode(episode);
-  };
-
-  const handleClosePlayer = () => {
-    setSelectedEpisode(null);
   };
 
   return (
@@ -34,7 +38,7 @@ export default function Podcast() {
       <section className={styles.podcasts}>
         <h2 className={styles.podcastTitle}>Latest Episodes</h2>
         <div className={styles.podcastGrid}>
-          {[
+          {([
             {
               title: "Episode 1: Finding Faith",
               text: "Discover how to strengthen your faith in tough times.",
@@ -59,7 +63,7 @@ export default function Podcast() {
               image: "/image7.jpg",
               audioSrc: "/Infinity.mp3",
             },
-          ].map((episode, index) => (
+          ] as Episode[]).map((episode, index) => (
             <div key={index} className={styles.podcastCard}>
               <Image
                 src={episode.image}
@@ -108,7 +112,8 @@ export default function Podcast() {
         <AudioPlayer
           title={selectedEpisode.title}
           audioSrc={selectedEpisode.audioSrc}
-          onClose={handleClosePlayer}
+          isOpen={!!selectedEpisode}
+          setEpisode={setSelectedEpisode}
         />
       )}
     </main>
