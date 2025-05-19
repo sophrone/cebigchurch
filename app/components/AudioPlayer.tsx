@@ -117,14 +117,6 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
       <button className={styles.closeButton} onClick={handleClose}>
         ×
       </button>
-      <h3 className={styles.title}>{title}</h3>
-      <div className={styles.waveform}>
-        <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
-        <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
-        <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
-        <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""} ${styles.desktopOnly}`} />
-      </div>
-      <audio ref={audioRef} src={audioSrc} />
       <div className={styles.controls}>
         <button
           className={styles.playButton}
@@ -133,6 +125,13 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
         >
           {isPlaying ? "⏸" : "▶"}
         </button>
+        <h3 className={styles.title}>{title}</h3>
+        <div className={styles.waveform}>
+          <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
+          <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
+          <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""}`} />
+          <div className={`${styles.waveBar} ${isPlaying ? styles.wavePulse : ""} ${styles.desktopOnly}`} />
+        </div>
         <div className={styles.progressContainer}>
           <span className={styles.time}>{formatTime(currentTime)}</span>
           <input
@@ -141,11 +140,11 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
             max={duration}
             value={currentTime}
             onChange={handleProgressChange}
-            className={styles.progressBar}
+            className={`${styles.progressBar} ${isVolumeVisible ? styles.active : ""}`}
           />
           <span className={styles.time}>{formatTime(duration)}</span>
         </div>
-        <div className={`${styles.volumeContainer} ${isVolumeVisible ? styles.active : ""}`}>
+        <div className={styles.volumeContainer}>
           <span className={`${styles.volumeIcon} ${isVolumeVisible ? styles.pulse : ""}`}>
             {getVolumeIcon()}
           </span>
@@ -156,10 +155,11 @@ export default function AudioPlayer({ title, audioSrc, onCloseComplete }: AudioP
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
-            className={styles.volumeBar}
+            className={`${styles.volumeBar} ${isVolumeVisible ? styles.active : ""}`}
           />
         </div>
       </div>
+      <audio ref={audioRef} src={audioSrc} />
     </div>
   );
 }
