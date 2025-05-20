@@ -366,6 +366,31 @@
   color: #1e40af;
 }
 
+.successMessage {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #f3f4f6;
+  border: 2px solid #facc15;
+  border-radius: 8px;
+  animation: fadeIn 1s ease-out;
+}
+
+.successMessage p {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.errorText {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.875rem;
+  color: #e11d48;
+  margin-top: 0.25rem;
+  text-align: left;
+}
+
 ::selection {
   background: #facc15;
   color: #1e40af;

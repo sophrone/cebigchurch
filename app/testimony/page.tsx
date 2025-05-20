@@ -1,12 +1,63 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import styles from "./Testimony.module.css";
 
 export default function Testimony() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    testimony: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    testimony: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { name: "", email: "", testimony: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+      isValid = false;
+    }
+
+    if (formData.testimony.length < 20) {
+      newErrors.testimony = "Testimony must be at least 20 characters";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Testimony submitted! Glory!");
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", testimony: "" });
+    }
   };
 
   return (
@@ -25,42 +76,80 @@ export default function Testimony() {
       {/* Testimony Form Section */}
       <section className={styles.form}>
         <h2 className={styles.formTitle}>Submit Your Praise Report</h2>
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name" className={styles.formLabel}>
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className={styles.formInput}
-              placeholder="Your Name"
-              required
+        {submitted ? (
+          <div className={styles.successMessage}>
+            <p>Thanks for sharing! Glory!</p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className={styles.formButton}
+            >
+              Share Another Testimony
+            </button>
+          </div>
+        ) : (
+          <form className={styles.formContainer} onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label htmlFor="name" className={styles.formLabel}>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={styles.formInput}
+                placeholder="Your Name"
+              />
+              {errors.name && <p className={styles.errorText}>{errors.name}</p>}
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="email" className={styles.formLabel}>
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.formInput}
+                placeholder="Your Email"
+              />
+              {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="testimony" className={styles.formLabel}>
+                Testimony
+              </label>
+              <textarea
+                id="testimony"
+                name="testimony"
+                value={formData.testimony}
+                onChange={handleChange}
+                className={styles.formTextarea}
+                placeholder="Share your praise report..."
+                rows={5}
+              />
+              {errors.testimony && (
+                <p className={styles.errorText}>{errors.testimony}</p>
+              )}
+            </div>
+            <button type="submit" className={styles.formButton}>
+              Submit Testimony
+            </button>
+            <p className={styles.formNote}>
+              Note: This is a demo form. Submissions are logged to the console.
+            </p>
+            <Image
+              src="/cebc-logo.png"
+              alt="CEBC Logo"
+              width={32}
+              height={32}
+              className={styles.formIcon}
             />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="testimony" className={styles.formLabel}>
-              Testimony
-            </label>
-            <textarea
-              id="testimony"
-              className={styles.formTextarea}
-              placeholder="Share your praise report..."
-              rows={5}
-              required
-            ></textarea>
-          </div>
-          <button type="submit" className={styles.formButton}>
-            Submit Testimony
-          </button>
-        </form>
-        <Image
-          src="/cebc-logo.png"
-          alt="CEBC Logo"
-          width={32}
-          height={32}
-          className={styles.formIcon}
-        />
+          </form>
+        )}
       </section>
 
       {/* Praise Reports Section */}
