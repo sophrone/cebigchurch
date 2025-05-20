@@ -37,33 +37,27 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen && audio.src !== audioSrc && !isPlaying) {
-      audio.src = audioSrc; // Update source if changed
-      audio.load(); // Reload audio with new source
+    if (isOpen && audio.src !== audioSrc) {
+      audio.src = audioSrc;
+      audio.load();
+    }
+
+    if (isOpen && !isPlaying) {
       audio.volume = volume;
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((error) => {
-          console.error("Playback failed:", error);
-          setIsPlaying(false);
-        });
-    } else if (isOpen && !isPlaying) {
-      audio.volume = volume;
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((error) => {
-          console.error("Playback failed:", error);
-          setIsPlaying(false);
-        });
+      setTimeout(() => {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((error) => {
+            console.error("Playback failed:", error);
+            setIsPlaying(false);
+          });
+      }, 100); // Small delay to avoid interrupt
     } else if (!isOpen) {
-      audio.pause();
       setIsPlaying(false);
     }
 
     return () => {
-      audio.pause();
       audio.removeEventListener("loadedmetadata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
@@ -82,13 +76,15 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
         audio.src = audioSrc;
         audio.load();
       }
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((error) => {
-          console.error("Play failed:", error);
-          setIsPlaying(false);
-        });
+      setTimeout(() => {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((error) => {
+            console.error("Play failed:", error);
+            setIsPlaying(false);
+          });
+      }, 100); // Small delay to avoid interrupt
     }
   };
 

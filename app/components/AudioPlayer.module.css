@@ -5,7 +5,7 @@
   width: 100%;
   background: #1e40af;
   border-top: 2px solid #facc15;
-  padding: 0.25rem; /* Increased slightly */
+  padding: 0.25rem;
   text-align: center;
   box-shadow: 0 -4px 16px rgba(250, 204, 21, 0.3);
   z-index: 1000;
@@ -59,7 +59,7 @@
   align-items: center;
   gap: 0.15rem;
   width: 100%;
-  max-width: 380px; /* Increased slightly */
+  max-width: 380px;
 }
 
 @media (min-width: 640px) {
@@ -145,7 +145,7 @@
   align-items: center;
   gap: 0.1rem;
   width: 100%;
-  max-width: 150px;
+  max-width: 120px; /* Reduced as suggested */
 }
 
 @media (min-width: 640px) {
@@ -227,7 +227,7 @@
   justify-content: center;
   max-width: 100%;
   min-width: 0;
-  padding: 0 0.1rem; /* Added padding to prevent overlap */
+  padding: 0 0.1rem;
 }
 
 @media (min-width: 640px) {
