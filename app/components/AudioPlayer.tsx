@@ -177,7 +177,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
               <div
                 key={i}
                 className={styles.waveBar}
-                style={{ height: `${4 + Math.sin(i * 0.5) * 4}px` }}
+                style={{ "--i": i + 1, height: `${8 + Math.sin(i * 0.5) * 4}px` }}
               />
             ))}
           </div>
