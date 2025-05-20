@@ -27,7 +27,7 @@ export default function LiveService() {
             <iframe
               className={styles.heroPlayer}
               src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0`}
-              title="CEBC Youth Church Live Service"
+              title="CEBC Church Live Service"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
@@ -53,8 +53,8 @@ export default function LiveService() {
         <h2 className={styles.scheduleTitle}>Service Schedule</h2>
         <div className={styles.scheduleGrid}>
           {[
-            { day: "Sunday Worship", time: "May 18, 2025, 10:00 AM WAT", class: styles.sundayCard },
-            { day: "Midweek Service", time: "May 21, 2025, 7:00 PM WAT", class: styles.wednesdayCard },
+            { day: "Sunday Service", time: "First Service: 8:30 AM WAT, Second Service: 10:30 AM WAT", class: styles.sundayCard },
+            { day: "Midweek Service", time: "Wednesdays 6:00 PM WAT", class: styles.wednesdayCard },
           ].map((service, index) => (
             <div key={index} className={`${styles.scheduleCard} ${service.class}`}>
               <h3 className={styles.scheduleDay}>{service.day}</h3>
