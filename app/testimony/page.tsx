@@ -16,6 +16,7 @@ export default function Testimony() {
     testimony: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -23,6 +24,7 @@ export default function Testimony() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
+    setSubmitError("");
   };
 
   const validateForm = () => {
@@ -51,12 +53,28 @@ export default function Testimony() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
+    if (!validateForm()) return;
+
+    try {
+      const response = await fetch("/api/testimony", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit testimony");
+      }
+
       setSubmitted(true);
       setFormData({ name: "", email: "", testimony: "" });
+      setSubmitError("");
+    } catch (error) {
+      setSubmitError("Something went wrong. Please try again later.");
     }
   };
 
@@ -138,9 +156,7 @@ export default function Testimony() {
             <button type="submit" className={styles.formButton}>
               Submit Testimony
             </button>
-            <p className={styles.formNote}>
-              Note: This is a demo form. Submissions are logged to the console.
-            </p>
+            {submitError && <p className={styles.errorText}>{submitError}</p>}
             <Image
               src="/cebc-logo.png"
               alt="CEBC Logo"
