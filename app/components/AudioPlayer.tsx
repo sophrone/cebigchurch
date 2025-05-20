@@ -37,13 +37,16 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen) {
+    if (isOpen && !isPlaying) {
       audio.volume = volume;
-      audio.play().catch((error) => {
-        console.warn("Auto-play blocked by browser:", error);
-        setIsPlaying(false);
-      });
-    } else {
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((error) => {
+          console.warn("Auto-play blocked by browser:", error);
+          setIsPlaying(false);
+        });
+    } else if (!isOpen) {
       audio.pause();
       setIsPlaying(false);
     }
@@ -61,10 +64,13 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     if (audio) {
       if (isPlaying) {
         audio.pause();
+        setIsPlaying(false);
       } else {
-        audio.play().catch((error) => console.error("Play failed:", error));
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((error) => console.error("Play failed:", error));
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -146,8 +152,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <Image
             src={imageSrc}
             alt={title}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
@@ -174,7 +180,11 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           </div>
           <div className={`${styles.waveform} ${isPlaying ? styles.wavePulse : ""}`}>
             {[...Array(20)].map((_, i) => (
-              <div key={i} className={styles.waveBar} />
+              <div
+                key={i}
+                className={styles.waveBar}
+                style={{ height: `${4 + Math.abs(Math.sin(i * 0.5 + currentTime)) * 8}px` }}
+              />
             ))}
           </div>
         </div>
