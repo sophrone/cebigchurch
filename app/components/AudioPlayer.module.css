@@ -17,15 +17,6 @@
   gap: 0.15rem;
 }
 
-@media (min-width: 640px) {
-  .player {
-    padding: 1rem;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-  }
-}
-
 .closeButton {
   position: absolute;
   top: 0.1rem;
@@ -45,14 +36,6 @@
   color: #f97316;
 }
 
-@media (min-width: 640px) {
-  .closeButton {
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 1.25rem;
-  }
-}
-
 .playerContent {
   display: flex;
   flex-direction: column;
@@ -62,59 +45,32 @@
   max-width: 380px;
 }
 
-@media (min-width: 640px) {
-  .playerContent {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 600px;
-  }
-}
-
 .artContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.1rem;
-}
-
-@media (min-width: 640px) {
-  .artContainer {
-    flex-direction: row;
-    gap: 1rem;
-  }
+  width: 100%;
 }
 
 .artImage {
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: auto;
+  max-height: 120px;
   border: 2px solid #facc15;
   border-radius: 4px;
   object-fit: cover;
   background: #e5e7eb;
 }
 
-@media (min-width: 640px) {
-  .artImage {
-    width: 120px;
-    height: 120px;
-  }
-}
-
 .textContainer {
   text-align: center;
-}
-
-@media (min-width: 640px) {
-  .textContainer {
-    text-align: left;
-  }
+  padding: 0.1rem;
 }
 
 .title {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.4rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #f3f4f6;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
@@ -123,20 +79,11 @@
 
 .singer {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.3rem;
+  font-size: 0.6rem;
   font-weight: 400;
   color: #f3f4f6;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   margin: 0;
-}
-
-@media (min-width: 640px) {
-  .title {
-    font-size: 1rem;
-  }
-  .singer {
-    font-size: 0.875rem;
-  }
 }
 
 .progressWave {
@@ -145,14 +92,7 @@
   align-items: center;
   gap: 0.1rem;
   width: 100%;
-  max-width: 120px; /* Reduced as suggested */
-}
-
-@media (min-width: 640px) {
-  .progressWave {
-    width: 40%;
-    max-width: 300px;
-  }
+  max-width: 100px; /* Reduced further for mobile */
 }
 
 .progressContainer {
@@ -164,17 +104,10 @@
 
 .time {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.3rem;
+  font-size: 0.5rem;
   color: #f3f4f6;
   min-width: 8px;
   text-align: center;
-}
-
-@media (min-width: 640px) {
-  .time {
-    font-size: 0.875rem;
-    min-width: 35px;
-  }
 }
 
 .progressBar {
@@ -205,6 +138,22 @@
 }
 
 @media (min-width: 640px) {
+  .player {
+    padding: 1rem;
+  }
+  .artImage {
+    max-height: 200px;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .singer {
+    font-size: 0.9rem;
+  }
+  .time {
+    font-size: 0.875rem;
+    min-width: 35px;
+  }
   .progressBar {
     height: 4px;
   }
@@ -216,38 +165,46 @@
     width: 10px;
     height: 10px;
   }
+  .controlButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .volumeBar {
+    height: 4px;
+    width: 100px;
+  }
+  .volumeBar::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
+  .volumeBar::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 .controlButtons {
   display: flex;
   align-items: center;
-  gap: 0.15rem;
-  margin-top: 0.15rem;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
   min-width: 0;
-  padding: 0 0.1rem;
-}
-
-@media (min-width: 640px) {
-  .controlButtons {
-    margin-top: 0;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-    padding: 0;
-  }
+  padding: 0 0.2rem;
 }
 
 .controlButton {
   font-family: var(--font-poppins), sans-serif;
-  font-size: 0.45rem;
+  font-size: 0.6rem;
   color: #1e40af;
   background: linear-gradient(90deg, #facc15, #f97316);
   border: none;
   border-radius: 50%;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,14 +217,6 @@
   transform: scale(1.1);
 }
 
-@media (min-width: 640px) {
-  .controlButton {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
-}
-
 .volumeBar {
   height: 1.2px;
   background: #e5e7eb;
@@ -275,7 +224,7 @@
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  width: 35px;
+  width: 40px;
   flex-shrink: 0;
 }
 
@@ -294,21 +243,6 @@
   background: #facc15;
   border-radius: 50%;
   box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
-}
-
-@media (min-width: 640px) {
-  .volumeBar {
-    height: 4px;
-    width: 80px;
-  }
-  .volumeBar::-webkit-slider-thumb {
-    width: 10px;
-    height: 10px;
-  }
-  .volumeBar::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 ::selection {

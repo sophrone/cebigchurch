@@ -4,22 +4,31 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import styles from "./AudioPlayer.module.css";
 
+// Sample playlist (replace with your actual track data)
+const playlist = [
+  { title: "Drive", audioSrc: "/Drive.mp3", imageSrc: "/image6.jpg" },
+  { title: "Walk", audioSrc: "/track2.mp3", imageSrc: "/image7.jpg" },
+  { title: "Run", audioSrc: "/track3.mp3", imageSrc: "/image8.jpg" },
+];
+
 interface AudioPlayerProps {
-  title: string;
-  audioSrc: string;
-  imageSrc: string;
+  initialTitle: string;
+  initialAudioSrc: string;
+  initialImageSrc: string;
   onCloseComplete: (title: string) => void;
 }
 
-export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete }: AudioPlayerProps) {
+export default function AudioPlayer({ initialTitle, initialAudioSrc, initialImageSrc, onCloseComplete }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isVolumeVisible, setIsVolumeVisible] = useState(false);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const userGestureRef = useRef(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -37,23 +46,21 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen && audio.src !== audioSrc) {
-      audio.src = audioSrc;
+    if (isOpen) {
+      audio.src = playlist[currentTrackIndex].audioSrc;
       audio.load();
-    }
-
-    if (isOpen && !isPlaying) {
-      audio.volume = volume;
-      setTimeout(() => {
-        audio
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((error) => {
-            console.error("Playback failed:", error);
-            setIsPlaying(false);
-          });
-      }, 100); // Small delay to avoid interrupt
-    } else if (!isOpen) {
+      if (userGestureRef.current || !isPlaying) {
+        setTimeout(() => {
+          audio
+            .play()
+            .then(() => setIsPlaying(true))
+            .catch((error) => {
+              console.error("Playback failed:", error);
+              setIsPlaying(false);
+            });
+        }, 200); // Increased delay to avoid interrupt
+      }
+    } else {
       setIsPlaying(false);
     }
 
@@ -62,20 +69,19 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, volume, isPlaying]);
+  }, [isOpen, currentTrackIndex, userGestureRef.current]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
+    userGestureRef.current = true; // Mark user gesture
 
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
     } else {
-      if (audio.src !== audioSrc) {
-        audio.src = audioSrc;
-        audio.load();
-      }
+      audio.src = playlist[currentTrackIndex].audioSrc;
+      audio.load();
       setTimeout(() => {
         audio
           .play()
@@ -84,7 +90,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
             console.error("Play failed:", error);
             setIsPlaying(false);
           });
-      }, 100); // Small delay to avoid interrupt
+      }, 200); // Increased delay to avoid interrupt
     }
   };
 
@@ -129,16 +135,20 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
   };
 
   const previous = () => {
-    console.log("Previous track (placeholder: single episode for now)");
+    setCurrentTrackIndex((prev) => (prev - 1 + playlist.length) % playlist.length);
+    setIsPlaying(false); // Reset playing state for new track
+    userGestureRef.current = true; // Allow autoplay after user action
   };
 
   const next = () => {
-    console.log("Next track (placeholder: single episode for now)");
+    setCurrentTrackIndex((prev) => (prev + 1) % playlist.length);
+    setIsPlaying(false); // Reset playing state for new track
+    userGestureRef.current = true; // Allow autoplay after user action
   };
 
   const handleClose = () => {
     setIsOpen(false);
-    onCloseComplete(title);
+    onCloseComplete(playlist[currentTrackIndex].title);
   };
 
   const formatTime = (time: number) => {
@@ -164,18 +174,18 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       <div className={styles.playerContent}>
         <div className={styles.artContainer}>
           <Image
-            src={imageSrc}
-            alt={title}
+            src={playlist[currentTrackIndex].imageSrc}
+            alt={playlist[currentTrackIndex].title}
             width={50}
             height={50}
             className={styles.artImage}
             onError={(e) => {
-              console.error(`Failed to load image: ${imageSrc}`);
+              console.error(`Failed to load image: ${playlist[currentTrackIndex].imageSrc}`);
               (e.target as HTMLImageElement).src = "/cebc-logo.png";
             }}
           />
           <div className={styles.textContainer}>
-            <h3 className={styles.title}>{title}</h3>
+            <h3 className={styles.title}>{playlist[currentTrackIndex].title}</h3>
             <p className={styles.singer}>CEBC Sermon</p>
           </div>
         </div>
@@ -228,7 +238,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           )}
         </div>
       </div>
-      <audio ref={audioRef} src={audioSrc} />
+      <audio ref={audioRef} />
     </div>
   );
 }
