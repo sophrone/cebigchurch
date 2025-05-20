@@ -38,10 +38,9 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("timeupdate", setAudioTime);
 
     if (isOpen) {
-      // Fallback for auto-play blocked by browser
       audio.play().catch((error) => {
         console.warn("Auto-play blocked by browser:", error);
-        setIsPlaying(false); // Ensure play button is required
+        setIsPlaying(false);
       });
     } else {
       audio.pause();
@@ -74,7 +73,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       const newTime = Number(e.target.value);
       audio.currentTime = newTime;
       setCurrentTime(newTime);
-      console.log(`Progress changed to: ${newTime}s`);
     }
   };
 
@@ -85,18 +83,39 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.volume = newVolume;
       setVolume(newVolume);
       setIsVolumeVisible(true);
-      console.log(`Volume changed to: ${Math.round(newVolume * 100)}%`);
-      if (volumeTimeoutRef.current) {
-        clearTimeout(volumeTimeoutRef.current);
-      }
-      volumeTimeoutRef.current = setTimeout(() => {
-        setIsVolumeVisible(false);
-      }, 2000);
+      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
+      volumeTimeoutRef.current = setTimeout(() => setIsVolumeVisible(false), 2000);
     }
   };
 
+  const rewind = () => {
+    const audio = audioRef.current;
+    if (audio && audio.currentTime >= 10) {
+      audio.currentTime -= 10;
+      setCurrentTime(audio.currentTime);
+    } else if (audio) {
+      audio.currentTime = 0;
+      setCurrentTime(0);
+    }
+  };
+
+  const repeat = () => {
+    const audio = audioRef.current;
+    if (audio && audio.currentTime + 10 <= duration) {
+      audio.currentTime += 10;
+      setCurrentTime(audio.currentTime);
+    }
+  };
+
+  const previous = () => {
+    console.log("Previous track (placeholder: single episode for now)");
+  };
+
+  const next = () => {
+    console.log("Next track (placeholder: single episode for now)");
+  };
+
   const handleClose = () => {
-    console.log(`Closing player for: ${title}`);
     setIsOpen(false);
     onCloseComplete(title);
   };
@@ -107,13 +126,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const getVolumeIcon = () => {
-    if (volume <= 0) return "🔇";
-    if (volume <= 0.33) return "🔈";
-    if (volume <= 0.66) return "🔉";
-    return "🔊";
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -121,7 +133,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       <button className={styles.closeButton} onClick={handleClose}>
         ×
       </button>
-      <div className={styles.controls}>
+      <div className={styles.playerContent}>
         <div className={styles.artContainer}>
           <Image
             src={imageSrc}
@@ -131,10 +143,13 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
-              (e.target as HTMLImageElement).src = "/cebc-logo.png"; // Fallback
+              (e.target as HTMLImageElement).src = "/cebc-logo.png";
             }}
           />
-          <h3 className={styles.title}>{title}</h3>
+          <div className={styles.textContainer}>
+            <h3 className={styles.title}>{title}</h3>
+            <p className={styles.singer}>CEBC Sermon</p>
+          </div>
         </div>
         <div className={styles.progressWave}>
           <div className={styles.progressContainer}>
@@ -145,42 +160,32 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
               max={duration}
               value={currentTime}
               onChange={handleProgressChange}
-              className={`${styles.progressBar} ${isVolumeVisible ? styles.active : ""}`}
+              className={styles.progressBar}
             />
             <span className={styles.time}>{formatTime(duration)}</span>
           </div>
-          <div className={`${styles.waveContainer} ${isPlaying ? styles.wavePulse : ""}`}>
+          <div className={styles.waveform}>
             {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className={styles.waveBar}
-                style={{ height: `${4 + Math.random() * 8}px` }}
-              />
+              <div key={i} className={styles.waveBar} />
             ))}
           </div>
         </div>
         <div className={styles.controlButtons}>
-          <button
-            className={styles.playButton}
-            onClick={togglePlay}
-            aria-label={isPlaying ? "Pause" : "Play"}
-          >
+          <button className={styles.controlButton} onClick={rewind}>
+            ⏪10
+          </button>
+          <button className={styles.controlButton} onClick={previous}>
+            ◄
+          </button>
+          <button className={styles.controlButton} onClick={togglePlay}>
             {isPlaying ? "⏸" : "▶"}
           </button>
-          <div className={styles.volumeContainer}>
-            <span className={`${styles.volumeIcon} ${isVolumeVisible ? styles.pulse : ""}`}>
-              {getVolumeIcon()}
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-              className={`${styles.volumeBar} ${isVolumeVisible ? styles.active : ""}`}
-            />
-          </div>
+          <button className={styles.controlButton} onClick={next}>
+            ►
+          </button>
+          <button className={styles.controlButton} onClick={repeat}>
+            ↻10
+          </button>
         </div>
       </div>
       <audio ref={audioRef} src={audioSrc} />
