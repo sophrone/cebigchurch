@@ -18,38 +18,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className={styles.formSection}>
-        <h2 className={styles.formTitle}>Send Us a Message</h2>
-        <div className={styles.form}>
-          <div className={styles.formFields}>
-            <input
-              type="text"
-              placeholder="Your Name"
-              className={styles.input}
-              aria-label="Your Name"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className={styles.input}
-              aria-label="Your Email"
-            />
-          </div>
-          <textarea
-            placeholder="Your Message"
-            className={styles.textarea}
-            aria-label="Your Message"
-          />
-          <button className={styles.submitButton} disabled>
-            Send Message
-          </button>
-          <p className={styles.formNote}>
-            Note: Form submission is disabled in this demo.
-          </p>
-        </div>
-      </section>
-
       {/* Social Links Section */}
       <section className={styles.social}>
         <h2 className={styles.socialTitle}>Connect With Us</h2>
