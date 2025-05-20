@@ -174,17 +174,13 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           </div>
           <div className={`${styles.waveform} ${isPlaying ? styles.wavePulse : ""}`}>
             {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className={styles.waveBar}
-                style={{ "--i": i + 1, height: `${8 + Math.sin(i * 0.5) * 4}px` }}
-              />
+              <div key={i} className={styles.waveBar} />
             ))}
           </div>
         </div>
         <div className={styles.controlButtons}>
           <button className={styles.controlButton} onClick={rewind}>
-            ⏪10
+            ↺
           </button>
           <button className={styles.controlButton} onClick={previous}>
             ◄
@@ -196,7 +192,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
             ►
           </button>
           <button className={styles.controlButton} onClick={repeat}>
-            ↻10
+            ↻
           </button>
           <button
             className={styles.controlButton}
