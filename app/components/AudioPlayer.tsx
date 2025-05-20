@@ -37,13 +37,24 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen && !isPlaying) {
+    if (isOpen && audio.src !== audioSrc && !isPlaying) {
+      audio.src = audioSrc; // Update source if changed
+      audio.load(); // Reload audio with new source
       audio.volume = volume;
       audio
         .play()
         .then(() => setIsPlaying(true))
         .catch((error) => {
-          console.warn("Auto-play blocked by browser:", error);
+          console.error("Playback failed:", error);
+          setIsPlaying(false);
+        });
+    } else if (isOpen && !isPlaying) {
+      audio.volume = volume;
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((error) => {
+          console.error("Playback failed:", error);
           setIsPlaying(false);
         });
     } else if (!isOpen) {
@@ -57,20 +68,27 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, volume, isPlaying]); // Added isPlaying to dependency array
+  }, [isOpen, audioSrc, volume, isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-      } else {
-        audio
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((error) => console.error("Play failed:", error));
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      if (audio.src !== audioSrc) {
+        audio.src = audioSrc;
+        audio.load();
       }
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((error) => {
+          console.error("Play failed:", error);
+          setIsPlaying(false);
+        });
     }
   };
 
@@ -87,7 +105,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     const audio = audioRef.current;
     if (audio) {
       const newVolume = Number(e.target.value);
-      audio.volume = newVolume; // Update volume without pausing
+      audio.volume = newVolume;
       setVolume(newVolume);
       setIsVolumeVisible(true);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
@@ -152,8 +170,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <Image
             src={imageSrc}
             alt={title}
-            width={60}
-            height={60}
+            width={50}
+            height={50}
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
