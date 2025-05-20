@@ -54,9 +54,8 @@
 }
 
 .artImage {
-  width: 100%;
-  height: auto;
-  max-height: 120px;
+  width: 50px;
+  height: 50px;
   border: 2px solid #facc15;
   border-radius: 4px;
   object-fit: cover;
@@ -92,7 +91,7 @@
   align-items: center;
   gap: 0.1rem;
   width: 100%;
-  max-width: 100px; /* Reduced further for mobile */
+  max-width: 100px;
 }
 
 .progressContainer {
@@ -142,7 +141,8 @@
     padding: 1rem;
   }
   .artImage {
-    max-height: 200px;
+    width: 60px;
+    height: 60px;
   }
   .title {
     font-size: 1.2rem;
