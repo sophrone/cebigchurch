@@ -87,7 +87,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     const audio = audioRef.current;
     if (audio) {
       const newVolume = Number(e.target.value);
-      audio.volume = newVolume;
+      audio.volume = newVolume; // Update volume without affecting playback
       setVolume(newVolume);
       setIsVolumeVisible(true);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
@@ -152,8 +152,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <Image
             src={imageSrc}
             alt={title}
-            width={80}
-            height={80}
+            width={70}
+            height={70}
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
@@ -177,15 +177,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
               className={styles.progressBar}
             />
             <span className={styles.time}>{formatTime(duration)}</span>
-          </div>
-          <div className={`${styles.waveform} ${isPlaying ? styles.wavePulse : ""}`}>
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className={styles.waveBar}
-                style={{ height: `${4 + Math.abs(Math.sin(i * 0.5 + currentTime)) * 8}px` }}
-              />
-            ))}
           </div>
         </div>
         <div className={styles.controlButtons}>
