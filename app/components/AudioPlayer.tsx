@@ -20,7 +20,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
   const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const userGestureRef = useRef(false);
+  const hasPlayedRef = useRef(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -38,21 +38,25 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen) {
+    if (isOpen && !hasPlayedRef.current) {
       audio.src = audioSrc;
       audio.load();
-      if (userGestureRef.current || !isPlaying) {
-        setTimeout(() => {
-          audio
-            .play()
-            .then(() => setIsPlaying(true))
-            .catch((error) => {
-              console.error("Playback failed:", error);
-              setIsPlaying(false);
-            });
-        }, 200);
-      }
-    } else {
+      setTimeout(() => {
+        audio
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            hasPlayedRef.current = true;
+          })
+          .catch((error) => {
+            console.error("Initial playback failed:", error);
+            setIsPlaying(false);
+          });
+      }, 200);
+    }
+
+    if (!isOpen) {
+      audio.pause();
       setIsPlaying(false);
     }
 
@@ -61,18 +65,18 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, isPlaying]);
+  }, [isOpen, audioSrc]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    userGestureRef.current = true; // Ensure gesture is set for future plays
 
     if (isPlaying) {
-      audio.pause(); // Simply pause without reloading
+      audio.pause();
       setIsPlaying(false);
     } else {
-      if (audio.src !== audioSrc || audio.paused) {
+      // Avoid resetting the source if already set
+      if (!audio.src || audio.src !== audioSrc) {
         audio.src = audioSrc;
         audio.load();
       }
