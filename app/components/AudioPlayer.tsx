@@ -38,9 +38,10 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("timeupdate", setAudioTime);
 
     if (isOpen) {
-      audio.play().then(() => setIsPlaying(true)).catch((error) => {
-        console.error("Auto-play failed:", error);
-        setIsPlaying(false);
+      // Fallback for auto-play blocked by browser
+      audio.play().catch((error) => {
+        console.warn("Auto-play blocked by browser:", error);
+        setIsPlaying(false); // Ensure play button is required
       });
     } else {
       audio.pause();
@@ -51,6 +52,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.pause();
       audio.removeEventListener("loadedmetadata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
+      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
   }, [isOpen, audioSrc]);
 
@@ -127,7 +129,10 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
             width={100}
             height={100}
             className={styles.artImage}
-            onError={() => console.error(`Failed to load image: ${imageSrc}`)}
+            onError={(e) => {
+              console.error(`Failed to load image: ${imageSrc}`);
+              (e.target as HTMLImageElement).src = "/cebc-logo.png"; // Fallback
+            }}
           />
           <h3 className={styles.title}>{title}</h3>
         </div>
