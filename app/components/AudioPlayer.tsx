@@ -61,7 +61,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, userGestureRef.current, isPlaying]);
+  }, [isOpen, audioSrc, isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
