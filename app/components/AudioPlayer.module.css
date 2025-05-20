@@ -19,16 +19,17 @@
 
 .closeButton {
   position: absolute;
-  top: 0.1rem;
-  right: 0.1rem;
+  top: 0.25rem;
+  right: 0.25rem;
   background: none;
   border: none;
   color: #facc15;
-  font-size: 0.7rem;
+  font-size: 1rem; /* Increased for better visibility */
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.3s ease;
   font-family: var(--font-poppins), sans-serif;
+  padding: 0.1rem;
 }
 
 .closeButton:hover {
@@ -97,7 +98,8 @@
 .progressContainer {
   display: flex;
   align-items: center;
-  gap: 0.1rem;
+  justify-content: center; /* Center the progress bar */
+  gap: 0.2rem; /* Increased gap for better spacing */
   width: 100%;
 }
 
@@ -105,7 +107,7 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 0.5rem;
   color: #f3f4f6;
-  min-width: 8px;
+  min-width: 10px; /* Slightly increased for readability */
   text-align: center;
 }
 
@@ -117,6 +119,7 @@
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
+  margin: 0 0.1rem; /* Add margin to center visually */
 }
 
 .progressBar::-webkit-slider-thumb {
@@ -143,6 +146,11 @@
   .artImage {
     width: 60px;
     height: 60px;
+  }
+  .closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.5rem; /* Larger on desktop */
   }
   .title {
     font-size: 1.2rem;

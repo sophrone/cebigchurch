@@ -61,7 +61,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, userGestureRef.current]);
+  }, [isOpen, audioSrc, userGestureRef.current, isPlaying]); // Added isPlaying to dependency array
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -126,14 +126,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     }
   };
 
-  const previous = () => {
-    console.log("Previous track (placeholder: single episode for now)");
-  };
-
-  const next = () => {
-    console.log("Next track (placeholder: single episode for now)");
-  };
-
   const handleClose = () => {
     setIsOpen(false);
     onCloseComplete(title);
@@ -195,14 +187,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <button className={styles.controlButton} onClick={rewind}>
             ↺
           </button>
-          <button className={styles.controlButton} onClick={previous}>
-            ◄
-          </button>
           <button className={styles.controlButton} onClick={togglePlay}>
             {isPlaying ? "⏸" : "▶"}
-          </button>
-          <button className={styles.controlButton} onClick={next}>
-            ►
           </button>
           <button className={styles.controlButton} onClick={repeat}>
             ↻
