@@ -29,6 +29,8 @@ export default function Podcast() {
     }
   }, [closedEpisode, selectedEpisode]);
 
+  const fallbackImage = "/cebc-logo.png";
+
   return (
     <main className={styles.main}>
       {/* Hero Section */}
@@ -81,8 +83,10 @@ export default function Podcast() {
                 className={styles.podcastImage}
                 priority
                 loading="eager"
-                data-image={episode.image}
-                onError={() => console.error(`Failed to load image: ${episode.image}`)}
+                onError={(e) => {
+                  console.error(`Failed to load image: ${episode.image}`);
+                  (e.target as HTMLImageElement).src = fallbackImage; // Fallback to logo
+                }}
               />
               <h3 className={styles.podcastTitle}>{episode.title}</h3>
               <p className={styles.podcastText}>{episode.text}</p>
