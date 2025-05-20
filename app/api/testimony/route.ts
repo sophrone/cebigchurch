@@ -34,6 +34,10 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Verify transporter configuration
+    await transporter.verify();
+    console.log("Transporter is ready");
+
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -54,6 +58,7 @@ export async function POST(request: NextRequest) {
 
     // Send email
     await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully");
 
     return NextResponse.json(
       { message: "Testimony submitted successfully" },
@@ -62,7 +67,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: "Failed to submit testimony" },
+      { error: "Failed to submit testimony. Check console for details." },
       { status: 500 }
     );
   }
