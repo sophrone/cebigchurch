@@ -68,7 +68,8 @@ export default function Contact() {
         <h2 className={styles.mapTitle}>Find Us</h2>
         <p className={styles.mapText}>
           Christ Embassy Big Church<br />
-          123 Faith Avenue, Lagos, Nigeria
+          MRS Filling Station, Opposite Garden Top Hotel<br />
+          Festac Link Road, Lagos, Nigeria.
         </p>
         <Image
           src="/image3.jpg"
