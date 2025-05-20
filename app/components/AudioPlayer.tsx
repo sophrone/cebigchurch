@@ -61,19 +61,21 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, userGestureRef.current, isPlaying]); // Added isPlaying to dependency array
+  }, [isOpen, audioSrc, userGestureRef.current, isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    userGestureRef.current = true;
+    userGestureRef.current = true; // Ensure gesture is set for future plays
 
     if (isPlaying) {
-      audio.pause();
+      audio.pause(); // Simply pause without reloading
       setIsPlaying(false);
     } else {
-      audio.src = audioSrc;
-      audio.load();
+      if (audio.src !== audioSrc || audio.paused) {
+        audio.src = audioSrc;
+        audio.load();
+      }
       setTimeout(() => {
         audio
           .play()
