@@ -16,7 +16,10 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
   const [isOpen, setIsOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -35,6 +38,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("timeupdate", setAudioTime);
 
     if (isOpen) {
+      audio.volume = volume; // Set initial volume
       audio.play().catch((error) => {
         console.warn("Auto-play blocked by browser:", error);
         setIsPlaying(false);
@@ -48,8 +52,9 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.pause();
       audio.removeEventListener("loadedmetadata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
+      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc]);
+  }, [isOpen, audioSrc, volume]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -69,6 +74,18 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       const newTime = Number(e.target.value);
       audio.currentTime = newTime;
       setCurrentTime(newTime);
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current;
+    if (audio) {
+      const newVolume = Number(e.target.value);
+      audio.volume = newVolume;
+      setVolume(newVolume);
+      setIsVolumeVisible(true);
+      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
+      volumeTimeoutRef.current = setTimeout(() => setIsVolumeVisible(false), 2000);
     }
   };
 
@@ -108,6 +125,13 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  const getVolumeIcon = () => {
+    if (volume <= 0) return "🔇";
+    if (volume <= 0.33) return "🔈";
+    if (volume <= 0.66) return "🔉";
+    return "🔊";
   };
 
   if (!isOpen) return null;
@@ -170,6 +194,23 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <button className={styles.controlButton} onClick={repeat}>
             ↻10
           </button>
+          <button
+            className={styles.controlButton}
+            onClick={() => setIsVolumeVisible(!isVolumeVisible)}
+          >
+            {getVolumeIcon()}
+          </button>
+          {isVolumeVisible && (
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+              className={styles.volumeBar}
+            />
+          )}
         </div>
       </div>
       <audio ref={audioRef} src={audioSrc} />

@@ -271,6 +271,47 @@
   }
 }
 
+.volumeBar {
+  height: 3px;
+  background: #e5e7eb;
+  border-radius: 1.5px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 80px;
+}
+
+.volumeBar::-webkit-slider-thumb {
+  appearance: none;
+  width: 8px;
+  height: 8px;
+  background: #facc15;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+}
+
+.volumeBar::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+  background: #facc15;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+}
+
+@media (min-width: 640px) {
+  .volumeBar {
+    height: 4px;
+  }
+  .volumeBar::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+  }
+  .volumeBar::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 ::selection {
   background: #facc15;
   color: #1e40af;
