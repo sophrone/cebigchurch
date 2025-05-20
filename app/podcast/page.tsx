@@ -105,9 +105,10 @@ export default function Podcast() {
       <section className={styles.cta}>
         <h2 className={styles.ctaTitle}>Stay Connected</h2>
         <p className={styles.ctaText}>
-          Subscribe to our podcast for weekly inspiration and youth-focused messages!
+          Subscribe to our channel for weekly inspiration and faith-stirring messages!
         </p>
-        <Link href="https://open.spotify.com/show/cebc-youth" className={styles.ctaButton}>
+        <Link href="https://www.youtube.com/@cebigchurch" target="_blank"
+            rel="noopener noreferrer" className={styles.ctaButton}>
           Subscribe Now
         </Link>
         <Image

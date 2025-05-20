@@ -334,6 +334,7 @@
   margin: 1rem auto 0;
   width: 24px;
   height: 24px;
+  border-radius: 50%; /* Make the spinning logo rounded */
   animation: spin 10s linear infinite;
 }
 
