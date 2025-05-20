@@ -57,7 +57,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.removeEventListener("timeupdate", setAudioTime);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
-  }, [isOpen, audioSrc, volume]);
+  }, [isOpen, audioSrc, volume, isPlaying]); // Added isPlaying to dependency array
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -87,7 +87,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     const audio = audioRef.current;
     if (audio) {
       const newVolume = Number(e.target.value);
-      audio.volume = newVolume; // Update volume without affecting playback
+      audio.volume = newVolume; // Update volume without pausing
       setVolume(newVolume);
       setIsVolumeVisible(true);
       if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
@@ -152,8 +152,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <Image
             src={imageSrc}
             alt={title}
-            width={70}
-            height={70}
+            width={60}
+            height={60}
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
