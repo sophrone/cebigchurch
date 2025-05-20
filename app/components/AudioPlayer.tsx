@@ -38,7 +38,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("timeupdate", setAudioTime);
 
     if (isOpen) {
-      audio.volume = volume; // Set initial volume
+      audio.volume = volume;
       audio.play().catch((error) => {
         console.warn("Auto-play blocked by browser:", error);
         setIsPlaying(false);
@@ -172,9 +172,13 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
             />
             <span className={styles.time}>{formatTime(duration)}</span>
           </div>
-          <div className={styles.waveform}>
+          <div className={`${styles.waveform} ${isPlaying ? styles.wavePulse : ""}`}>
             {[...Array(20)].map((_, i) => (
-              <div key={i} className={styles.waveBar} />
+              <div
+                key={i}
+                className={styles.waveBar}
+                style={{ height: `${4 + Math.sin(i * 0.5) * 4}px` }}
+              />
             ))}
           </div>
         </div>

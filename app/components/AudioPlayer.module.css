@@ -215,16 +215,86 @@
   height: 14px;
 }
 
+@media (min-width: 640px) {
+  .waveform {
+    height: 20px;
+  }
+}
+
+.wavePulse .waveBar {
+  animation: wavePulse 0.8s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
 .waveBar {
+  --i: 0;
   width: 1px;
   background: #facc15;
   border-radius: 0.5px;
 }
 
+.waveBar:nth-child(1) {
+  --i: 1;
+}
+.waveBar:nth-child(2) {
+  --i: 2;
+}
+.waveBar:nth-child(3) {
+  --i: 3;
+}
+.waveBar:nth-child(4) {
+  --i: 4;
+}
+.waveBar:nth-child(5) {
+  --i: 5;
+}
+.waveBar:nth-child(6) {
+  --i: 6;
+}
+.waveBar:nth-child(7) {
+  --i: 7;
+}
+.waveBar:nth-child(8) {
+  --i: 8;
+}
+.waveBar:nth-child(9) {
+  --i: 9;
+}
+.waveBar:nth-child(10) {
+  --i: 10;
+}
+.waveBar:nth-child(11) {
+  --i: 11;
+}
+.waveBar:nth-child(12) {
+  --i: 12;
+}
+.waveBar:nth-child(13) {
+  --i: 13;
+}
+.waveBar:nth-child(14) {
+  --i: 14;
+}
+.waveBar:nth-child(15) {
+  --i: 15;
+}
+.waveBar:nth-child(16) {
+  --i: 16;
+}
+.waveBar:nth-child(17) {
+  --i: 17;
+}
+.waveBar:nth-child(18) {
+  --i: 18;
+}
+.waveBar:nth-child(19) {
+  --i: 19;
+}
+.waveBar:nth-child(20) {
+  --i: 20;
+}
+
 @media (min-width: 640px) {
-  .waveform {
-    height: 20px;
-  }
   .waveBar {
     width: 1px;
   }
@@ -325,5 +395,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes wavePulse {
+  0% {
+    transform: scaleY(0.6);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }
