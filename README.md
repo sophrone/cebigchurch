@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Christ Embassy Big Church Website
 
-## Getting Started
+Welcome to the **Christ Embassy Big Church website**, a dynamic platform built to share sermons, testimonies, and live services with the community. This project is designed to enhance spiritual engagement through an _intuitive user interface_.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: Next.js 15.3.2
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Bundler**: Turbopack
+- **Other**: React, Nodemailer (for testimony submissions)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the Repository**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/your-username/your-project.git
+   cd your-project
+   ```
 
-## Learn More
+2. **Install Dependencies**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set Up Environment Variables**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   - Create a `.env.local` file in the root directory.
+   - Add the following:
+     ```plaintext
+     EMAIL_USER=your-email@gmail.com
+     EMAIL_PASS=your-app-password  # Use Gmail App Password
+     ```
+   - Generate an App Password for Gmail (see [Google Account Security](https://myaccount.google.com/apppasswords)).
 
-## Deploy on Vercel
+4. **Run the Development Server**
+   ```bash
+   npm run dev
+   ```
+   - Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Home (`/`)**: Landing page with site overview.
+- **Podcast (`/podcast`)**: Stream sermons with a custom audio player—click _“Listen Now”_ to play, pause, and switch tracks.
+- **Testimony (`/testimony`)**: Submit praise reports via a form; submissions are emailed to `cebigchurchtestimonies@gmail.com`.
+- **About, Contact, Live-Service, Testimony**: Explore additional pages for community info and engagement.
+- **Test**:
+  - Submit a testimony form and check the terminal/console for logs.
+  - Play a podcast episode and verify resume functionality.
+
+## Features
+
+- Responsive design for mobile (<640px) and desktop (>640px).
+- Audio player with play, pause, rewind, and volume controls.
+- Testimony form with client-side validation (name, email, min 20-character testimony).
+- Email notification for new testimonies using Nodemailer.
+- Static praise report showcase.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a Pull Request.
+
+## License
+
+This project is open-source under the **MIT License**. See [LICENSE](LICENSE) for details (create a `LICENSE` file if needed).
