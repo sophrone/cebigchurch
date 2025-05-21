@@ -22,7 +22,8 @@ export default function Contact() {
       <section className={styles.social}>
         <h2 className={styles.socialTitle}>Connect With Us</h2>
         <div className={styles.socialLinks}>
-          <Link href="https://www.instagram.com/ce_bigchurch/" className={styles.socialLink}>
+          <Link href="https://www.instagram.com/ce_bigchurch/" target="_blank"
+            rel="noopener noreferrer" className={styles.socialLink}>
             <Image
               src="/instagram-logo.png"
               alt="Instagram"
@@ -32,7 +33,8 @@ export default function Contact() {
               onError={() => console.error("Failed to load image: /instagram-logo.png")}
             />
           </Link>
-          <Link href="https://www.youtube.com/@cebigchurch" className={styles.socialLink}>
+          <Link href="https://www.youtube.com/@cebigchurch" target="_blank"
+            rel="noopener noreferrer" className={styles.socialLink}>
             <Image
               src="/youtube-logo.png"
               alt="YouTube"
@@ -42,7 +44,8 @@ export default function Contact() {
               onError={() => console.error("Failed to load image: /youtube-logo.png")}
             />
           </Link>
-          <Link href="https://kingschat.online/user/ce_bigchurch" className={styles.socialLink}>
+          <Link href="https://kingschat.online/user/ce_bigchurch" target="_blank"
+            rel="noopener noreferrer" className={styles.socialLink}>
             <Image
               src="/kingschat-logo.png"
               alt="KingsChat"
