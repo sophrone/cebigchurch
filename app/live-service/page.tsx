@@ -53,8 +53,8 @@ export default function LiveService() {
         <h2 className={styles.scheduleTitle}>Service Schedule</h2>
         <div className={styles.scheduleGrid}>
           {[
-            { day: "Sunday Service", time: "First Service: 8:30 AM WAT, Second Service: 10:30 AM WAT", class: styles.sundayCard },
-            { day: "Midweek Service", time: "Wednesdays 6:00 PM WAT", class: styles.wednesdayCard },
+            { day: "Sunday Service", time: "Sundays 8:30 AM & 10:30 AM", class: styles.sundayCard },
+            { day: "Midweek Service", time: "Wednesdays 6:00 PM", class: styles.wednesdayCard },
           ].map((service, index) => (
             <div key={index} className={`${styles.scheduleCard} ${service.class}`}>
               <h3 className={styles.scheduleDay}>{service.day}</h3>
