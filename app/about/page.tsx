@@ -22,7 +22,7 @@ export default function About() {
       <section className={styles.mission}>
         <h2 className={styles.missionTitle}>Our Mission & Vision</h2>
         <p className={styles.missionText}>
-          At Christ Embassy Big Church, we’re passionate about guiding young people to discover their purpose in Christ. Our mission is to create a vibrant community where youth can grow spiritually, connect with others, and make a positive impact in the world. We envision a generation that’s bold, faith-filled, and ready to lead with love and purpose.
+          At Christ Embassy Big Church, we’re passionate about guiding young people to discover their purpose in Christ. Our mission is to spread the message of the gospel to everyone in our world and beyond. We are a generation that’s bold, faith-filled, and ready to take over the world for our Lord Jesus.
         </p>
       </section>
 
@@ -32,7 +32,7 @@ export default function About() {
         <div className={styles.teamGrid}>
           {([
             {
-              name: "Pastor Daniel Atima",
+              name: "Pastor Trusouth",
               role: "Pastor",
               image: "/image6.jpg",
             },
