@@ -436,11 +436,6 @@
   }
 }
 
-::selection {
-  background: #facc15;
-  color: #1e40af;
-}
-
 @keyframes glowPulse {
   0% {
     box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
