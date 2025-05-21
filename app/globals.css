@@ -22,6 +22,17 @@ body {
   box-sizing: border-box;
 }
 
+/* Add global selection styles */
+::selection {
+  background: #facc15; /* Yellow background */
+  color: #1e40af; /* Blue text */
+}
+
+::-moz-selection {
+  background: #facc15;
+  color: #1e40af;
+}
+
 footer {
   background: linear-gradient(to right, #1e40af, #6b21a8);
 }
