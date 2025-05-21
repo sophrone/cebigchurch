@@ -179,7 +179,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           />
           <div className={styles.textContainer}>
             <h3 className={styles.title}>{title}</h3>
-            <p className={styles.singer}>CEBC Sermon</p>
+            <p className={styles.singer}>Pastor Trusouth</p>
           </div>
         </div>
         <div className={styles.progressWave}>
