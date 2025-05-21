@@ -75,7 +75,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.pause();
       setIsPlaying(false);
     } else {
-      // Avoid resetting the source if already set
+      // Only set src if it hasn't been set or is different
       if (!audio.src || audio.src !== audioSrc) {
         audio.src = audioSrc;
         audio.load();
