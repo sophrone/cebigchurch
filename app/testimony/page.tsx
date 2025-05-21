@@ -67,17 +67,15 @@ export default function Testimony() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit testimony");
+        throw new Error("Failed to submit testimony");
       }
 
       setSubmitted(true);
       setFormData({ name: "", email: "", testimony: "" });
       setSubmitError("");
-    } catch (err) {
-      setSubmitError(
-        err instanceof Error ? err.message : "Something went wrong. Please try again later."
-      );
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setSubmitError("Something went wrong. Please try again later.");
     }
   };
 
