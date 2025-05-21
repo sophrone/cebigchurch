@@ -23,7 +23,7 @@ export default function Home() {
             Christ Embassy Big Church
           </h1>
           <p className={`${styles.heroSubtitle} font-montserrat`}>
-            The Church without boundaries! Join our vibrant youth community.
+            The Church without boundaries! From Lagos to the ends of the Earth!.
           </p>
           <div className={styles.heroButtons}>
             <Link
@@ -55,7 +55,7 @@ export default function Home() {
           Welcome to Christ Embassy Big Church
         </h2>
         <p className={`${styles.welcomeText} font-montserrat`}>
-          We’re a community of young believers passionate about worship, growth, and making a difference. Join us for live services, inspiring testimonies, and more!
+          We’re a community of young believers passionate about taking the message of our Lord Jesus Christ to the ends of the earth. Join us for live services, inspiring testimonies, and more!
         </p>
       </section>
 
