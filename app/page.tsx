@@ -154,12 +154,6 @@ export default function Home() {
                 <p className={`${styles.testimonyText} font-montserrat italic`}>
                   {testimony.text} — {testimony.author}
                 </p>
-                <Link
-                  href="/testimony"
-                  className={`${styles.testimonyLink} font-montserrat`}
-                >
-                  Share Your Story
-                </Link>
               </div>
             ))}
           </div>

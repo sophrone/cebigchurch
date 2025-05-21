@@ -576,16 +576,6 @@
   text-align: center;
 }
 
-.testimonyLink {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.testimonyLink:hover {
-  text-decoration: underline;
-}
-
 .cta {
   padding: 3rem 1rem;
   background: linear-gradient(90deg, #1e40af, #6b21a8);
