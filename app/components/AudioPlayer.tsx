@@ -21,6 +21,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
   const audioRef = useRef<HTMLAudioElement>(null);
   const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hasPlayedRef = useRef(false);
+  const previousAudioSrcRef = useRef<string | null>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -38,26 +39,36 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     audio.addEventListener("loadedmetadata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime);
 
-    if (isOpen && !hasPlayedRef.current) {
-      audio.src = audioSrc;
-      audio.load();
-      setTimeout(() => {
-        audio
-          .play()
-          .then(() => {
-            setIsPlaying(true);
-            hasPlayedRef.current = true;
-          })
-          .catch((error) => {
-            console.error("Initial playback failed:", error);
-            setIsPlaying(false);
-          });
-      }, 200);
+    // Check if the audio source has changed (new track)
+    if (isOpen) {
+      if (audioSrc !== previousAudioSrcRef.current) {
+        audio.src = audioSrc;
+        audio.load();
+        setCurrentTime(0); // Reset time for new track
+        hasPlayedRef.current = false; // Allow playback for new track
+        previousAudioSrcRef.current = audioSrc;
+      }
+
+      if (!hasPlayedRef.current) {
+        setTimeout(() => {
+          audio
+            .play()
+            .then(() => {
+              setIsPlaying(true);
+              hasPlayedRef.current = true;
+            })
+            .catch((error) => {
+              console.error("Initial playback failed:", error);
+              setIsPlaying(false);
+            });
+        }, 200);
+      }
     }
 
     if (!isOpen) {
       audio.pause();
       setIsPlaying(false);
+      hasPlayedRef.current = false; // Reset for next open
     }
 
     return () => {
@@ -75,11 +86,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.pause();
       setIsPlaying(false);
     } else {
-      // Only set src if it hasn't been set or is different
-      if (!audio.src || audio.src !== audioSrc) {
-        audio.src = audioSrc;
-        audio.load();
-      }
+      // Only set src if it's a new track (already handled in useEffect)
       setTimeout(() => {
         audio
           .play()
