@@ -5,7 +5,7 @@
   width: 100%;
   background: #1e40af;
   border-top: 2px solid #facc15;
-  padding: 0.25rem;
+  padding: 0.5rem;
   text-align: center;
   box-shadow: 0 -4px 16px rgba(250, 204, 21, 0.3);
   z-index: 1000;
@@ -24,7 +24,7 @@
   background: none;
   border: none;
   color: #facc15;
-  font-size: 1rem; /* Increased for better visibility */
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -55,8 +55,8 @@
 }
 
 .artImage {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border: 2px solid #facc15;
   border-radius: 4px;
   object-fit: cover;
@@ -98,8 +98,8 @@
 .progressContainer {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the progress bar */
-  gap: 0.2rem; /* Increased gap for better spacing */
+  justify-content: center;
+  gap: 0.2rem;
   width: 100%;
 }
 
@@ -107,19 +107,19 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: 0.5rem;
   color: #f3f4f6;
-  min-width: 10px; /* Slightly increased for readability */
+  min-width: 10px;
   text-align: center;
 }
 
 .progressBar {
   flex: 1;
-  height: 1.2px;
+  height: 2px;
   background: #e5e7eb;
-  border-radius: 0.6px;
+  border-radius: 1px;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  margin: 0 0.1rem; /* Add margin to center visually */
+  margin: 0 0.1rem;
 }
 
 .progressBar::-webkit-slider-thumb {
@@ -144,13 +144,13 @@
     padding: 1rem;
   }
   .artImage {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
   .closeButton {
     top: 0.5rem;
     right: 0.5rem;
-    font-size: 1.5rem; /* Larger on desktop */
+    font-size: 1.5rem;
   }
   .title {
     font-size: 1.2rem;
@@ -178,18 +178,6 @@
     height: 40px;
     font-size: 1.2rem;
   }
-  .volumeBar {
-    height: 4px;
-    width: 100px;
-  }
-  .volumeBar::-webkit-slider-thumb {
-    width: 10px;
-    height: 10px;
-  }
-  .volumeBar::-moz-range-thumb {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 .controlButtons {
@@ -211,8 +199,8 @@
   background: linear-gradient(90deg, #facc15, #f97316);
   border: none;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,34 +211,6 @@
 
 .controlButton:hover {
   transform: scale(1.1);
-}
-
-.volumeBar {
-  height: 1.2px;
-  background: #e5e7eb;
-  border-radius: 0.6px;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  width: 40px;
-  flex-shrink: 0;
-}
-
-.volumeBar::-webkit-slider-thumb {
-  appearance: none;
-  width: 3px;
-  height: 3px;
-  background: #facc15;
-  border-radius: 50%;
-  box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
-}
-
-.volumeBar::-moz-range-thumb {
-  width: 3px;
-  height: 3px;
-  background: #facc15;
-  border-radius: 50%;
-  box-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
 }
 
 @keyframes slideUp {

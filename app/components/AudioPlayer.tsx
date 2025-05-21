@@ -16,10 +16,7 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
   const [isOpen, setIsOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(1);
-  const [isVolumeVisible, setIsVolumeVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hasPlayedRef = useRef(false);
   const previousAudioSrcRef = useRef<string | null>(null);
 
@@ -74,7 +71,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     return () => {
       audio.removeEventListener("loadedmetadata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
-      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
     };
   }, [isOpen, audioSrc]);
 
@@ -86,7 +82,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       audio.pause();
       setIsPlaying(false);
     } else {
-      // Only set src if it's a new track (already handled in useEffect)
       setTimeout(() => {
         audio
           .play()
@@ -105,18 +100,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
       const newTime = Number(e.target.value);
       audio.currentTime = newTime;
       setCurrentTime(newTime);
-    }
-  };
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audio = audioRef.current;
-    if (audio) {
-      const newVolume = Number(e.target.value);
-      audio.volume = newVolume;
-      setVolume(newVolume);
-      setIsVolumeVisible(true);
-      if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
-      volumeTimeoutRef.current = setTimeout(() => setIsVolumeVisible(false), 2000);
     }
   };
 
@@ -150,13 +133,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const getVolumeIcon = () => {
-    if (volume <= 0) return "🔇";
-    if (volume <= 0.33) return "🔈";
-    if (volume <= 0.66) return "🔉";
-    return "🔊";
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -169,8 +145,8 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <Image
             src={imageSrc}
             alt={title}
-            width={50}
-            height={50}
+            width={60}
+            height={60}
             className={styles.artImage}
             onError={(e) => {
               console.error(`Failed to load image: ${imageSrc}`);
@@ -206,23 +182,6 @@ export default function AudioPlayer({ title, audioSrc, imageSrc, onCloseComplete
           <button className={styles.controlButton} onClick={repeat}>
             ↻
           </button>
-          <button
-            className={styles.controlButton}
-            onClick={() => setIsVolumeVisible(!isVolumeVisible)}
-          >
-            {getVolumeIcon()}
-          </button>
-          {isVolumeVisible && (
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-              className={styles.volumeBar}
-            />
-          )}
         </div>
       </div>
       <audio ref={audioRef} />
