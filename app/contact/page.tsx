@@ -22,15 +22,15 @@ export default function Contact() {
       <section className={styles.social}>
         <h2 className={styles.socialTitle}>Connect With Us</h2>
         <div className={styles.socialLinks}>
-          <Link href="https://www.instagram.com/ce_bigchurch/" target="_blank"
+          <Link href="https://kingschat.online/user/ce_bigchurch" target="_blank"
             rel="noopener noreferrer" className={styles.socialLink}>
             <Image
-              src="/instagram-logo.png"
-              alt="Instagram"
+              src="/kingschat-logo.png"
+              alt="KingsChat"
               width={40}
               height={40}
               className={styles.socialIcon}
-              onError={() => console.error("Failed to load image: /instagram-logo.png")}
+              onError={() => console.error("Failed to load image: /kingschat-logo.png")}
             />
           </Link>
           <Link href="https://www.youtube.com/@cebigchurch" target="_blank"
@@ -44,15 +44,15 @@ export default function Contact() {
               onError={() => console.error("Failed to load image: /youtube-logo.png")}
             />
           </Link>
-          <Link href="https://kingschat.online/user/ce_bigchurch" target="_blank"
+          <Link href="https://www.instagram.com/ce_bigchurch/" target="_blank"
             rel="noopener noreferrer" className={styles.socialLink}>
             <Image
-              src="/kingschat-logo.png"
-              alt="KingsChat"
+              src="/instagram-logo.png"
+              alt="Instagram"
               width={40}
               height={40}
               className={styles.socialIcon}
-              onError={() => console.error("Failed to load image: /kingschat-logo.png")}
+              onError={() => console.error("Failed to load image: /instagram-logo.png")}
             />
           </Link>
         </div>
@@ -72,7 +72,7 @@ export default function Contact() {
         <p className={styles.mapText}>
           Christ Embassy Big Church<br />
           MRS Filling Station, Opposite Garden Top Hotel<br />
-          Festac Link Road, Lagos, Nigeria.
+          Festac Access Road, Lagos, Nigeria.
         </p>
         <Image
           src="/image3.jpg"
