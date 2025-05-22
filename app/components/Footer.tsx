@@ -18,15 +18,15 @@ export default function Footer() {
         {/* Social Media Links */}
         <div className={styles.socialLinks}>
           <a
-            href="https://instagram.com/ce_bigchurch"
+            href="https://kingschat.online/user/ce_bigchurch"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
-            data-testid="instagram-link"
+            data-testid="kingschat-link"
           >
             <Image
-              src="/instagram-logo.png"
-              alt="Instagram"
+              src="/kingschat-logo.png"
+              alt="KingsChat"
               width={40}
               height={40}
               className={styles.socialIcon}
@@ -48,15 +48,15 @@ export default function Footer() {
             />
           </a>
           <a
-            href="https://kingschat.online/user/ce_bigchurch"
+            href="https://instagram.com/ce_bigchurch"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
-            data-testid="kingschat-link"
+            data-testid="instagram-link"
           >
             <Image
-              src="/kingschat-logo.png"
-              alt="KingsChat"
+              src="/instagram-logo.png"
+              alt="Instagram"
               width={40}
               height={40}
               className={styles.socialIcon}
